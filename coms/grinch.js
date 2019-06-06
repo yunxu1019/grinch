@@ -22,18 +22,28 @@ var cross = function (method, url, data) {
         req.end(data instanceof Object ? JSON.stringify(data) : data);
     });
 };
-async function grinch() {
-    var data = await cross("post", "http://efront.cc:5989/grinch/_find", {
+var queue = function (f) {
+    var cx = 0;
+    var run = () => {
+        if (cx >= this.length) return;
+        var item = this[cx];
+        cx++;
+        f(item).then(run);
+    };
+    run();
+}
+function grinch() {
+    return cross("post", "http://efront.cc:5989/grinch/_find", {
         "selector": {
         },
         skip: 0,
         limit: 21,
         "sort": [{ 'date': "desc" }]
+    }).then(function (data) {
+        var items = JSON.parse(data).docs;
+        queue.call(items, function (item) {
+            return cross("get", item.url);
+        });
+        return new Date();
     });
-    var items = JSON.parse(data).docs;
-    for (var cx = 0, dx = items.length; cx < dx; cx++) {
-        var item = items[cx];
-        await cross("get", item.url);
-    }
-    return new Date();
 }

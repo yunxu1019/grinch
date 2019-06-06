@@ -5,8 +5,8 @@
   "main": "public/index",
   "scripts": {
     "test": "efront index.js",
-    "install":"node .",
-    "prepare": "efront build&&echo #!/usr/bin/env node>public\\index&&type public\\comm\\index>>public\\index&&rd /s /q public\\comm"
+    "install": "node .",
+    "prepare": "set app=index.js&&efront build&&echo #!/usr/bin/env node>public\\index&&type public\\comm\\index>>public\\index&&rd /s /q public\\comm"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yunxu1019/grinch/issues"
-  },  
+  },
   "homepage": "https://github.com/yunxu1019/grinch#readme"
 }
