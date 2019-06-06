@@ -30,13 +30,10 @@ async function grinch() {
         limit: 21,
         "sort": [{ 'date': "desc" }]
     });
-    data = JSON.parse(data);
-    for await (var item of data.docs) {
-        console.info(item.url);
-        cross("get", item.url);
+    var items = JSON.parse(data).docs;
+    for (var cx = 0, dx = items.length; cx < dx; cx++) {
+        var item = items[cx];
+        await cross("get", item.url);
     }
-    console.info('ok');
-}
-function main() {
-    grinch();
+    return new Date();
 }

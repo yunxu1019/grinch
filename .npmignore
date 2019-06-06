@@ -1,2 +1,6 @@
+_envs
 coms
 apps
+.gitignore
+*.tgz
+node_modules

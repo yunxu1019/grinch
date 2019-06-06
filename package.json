@@ -1,0 +1,21 @@
+{
+  "name": "grinch",
+  "version": "0.1.0",
+  "description": "访问量互推工具",
+  "main": "public/index",
+  "scripts": {
+    "test": "efront index.js",
+    "install":"node .",
+    "prepare": "efront build&&echo #!/usr/bin/env node>public\\index&&type public\\comm\\index>>public\\index&&rd /s /q public\\comm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yunxu1019/grinch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yunxu1019/grinch/issues"
+  },  
+  "homepage": "https://github.com/yunxu1019/grinch#readme"
+}
