@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/yunxu1019/grinch/issues"
   },
-  "homepage": "https://github.com/yunxu1019/grinch#readme"
+  "homepage": "https://github.com/yunxu1019/grinch#readme",
+  "dependencies": {
+    "jsdom": "^15.1.1"
+  }
 }

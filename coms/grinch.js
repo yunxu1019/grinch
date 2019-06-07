@@ -1,5 +1,6 @@
 var http = require("http");
 var URL = require("url");
+var jsdom = require("jsdom");
 var cross = function (method, url, data) {
     return new Promise(function (ok, oh) {
         var { hostname, port, pathname } = URL.parse(url);
@@ -24,13 +25,14 @@ var cross = function (method, url, data) {
 };
 var queue = function (f) {
     var cx = 0;
-    var run = () => {
-        if (cx >= this.length) return;
-        var item = this[cx];
-        cx++;
-        f(item).then(run);
-    };
-    run();
+    return new Promise(function (ok) {
+        var run = () => {
+            if (cx >= this.length) return ok();
+            var item = this[cx++];
+            f(item).then(run).catch(run);
+        };
+        run();
+    })
 }
 function grinch() {
     return cross("post", "http://efront.cc:5989/grinch/_find", {
@@ -41,9 +43,12 @@ function grinch() {
         "sort": [{ 'date': "desc" }]
     }).then(function (data) {
         var items = JSON.parse(data).docs;
-        queue.call(items, function (item) {
-            return cross("get", item.url);
+        return queue.call(items, function (item) {
+            return jsdom.JSDOM.fromURL(item.url, {
+                userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+            });
         });
+    }).then(function () {
         return new Date();
     });
 }
