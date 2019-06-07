@@ -25,7 +25,7 @@ var cross = function (method, url, data) {
 };
 var queue = function (f) {
     var cx = 0;
-    return new Promise(function (ok) {
+    return new Promise((ok) => {
         var run = () => {
             if (cx >= this.length) return ok();
             var item = this[cx++];
