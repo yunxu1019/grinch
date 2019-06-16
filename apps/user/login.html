@@ -1,0 +1,21 @@
+<div class="head">
+    登录
+</div>
+<div class="body" ng-submit="login()" onsubmit="event.preventDefault()">
+    <field>
+        <div>用户名</div>
+        <div><input ng-model=username /></div>
+    </field>
+    <field>
+        <div>用户名</div>
+        <div>
+            <pswd ng-model=username></pswd>
+        </div>
+    </field>
+</div>
+<div class="foot">
+    <button type="submit" ng-if='!login.ing'>
+        <span ng-if='!username'>${i18n(`游客`, "Guest")}</span>${i18n`login`}</button>
+    <button ng-if='login.ing' class='busy'>
+        <span ng-if='!username'>${i18n(`游客`, "Guest")}</span>${i18n('登录中', 'Logon')}</button>
+</div>

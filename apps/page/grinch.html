@@ -1,0 +1,9 @@
+<bar>
+    <btn ng-click="popup('#/page/edit')">添加</btn>
+</bar>
+<list ng-src="item in items" min-width=240>
+    <div class="item">
+        <span ng-bind="item.name"></span>
+        <span ng-bind="item.date"></span>
+    </div>
+</list>

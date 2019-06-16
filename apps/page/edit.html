@@ -1,0 +1,20 @@
+<div class="head">
+    <span ng-if="data._id">编辑</span>
+    <span ng-if="!data._id">添加</span>
+</div>
+<div class="body">
+    <field>
+        <div>名称</div>
+        <div><input ng-model=data.name></div>
+    </field>
+    <field>
+        <div>地址</div>
+        <div><input ng-model=data.url></div>
+    </field>
+</div>
+<div class="foot">
+    <btn ng-if=save.ing>正在保存</btn>
+    <btn ng-if=!save.ing ng-click="save.ing=true,save()">确定</btn>
+    <btn type="white" ng-if="close.ing">取消</btn>
+    <btn type="white" ng-if="!close.ing" ng-click="close.ing=true,close(-1)">取消</btn>
+</div>

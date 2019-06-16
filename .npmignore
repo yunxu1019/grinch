@@ -4,3 +4,4 @@ apps
 .gitignore
 *.tgz
 node_modules
+public/grinch
