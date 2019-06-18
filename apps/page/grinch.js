@@ -16,7 +16,6 @@ function main() {
     }).done(function (xhr) {
         var items = JSON.parse(xhr.responseText).docs;
         scope.items = items;
-        console.log(items);
         render.digest();
         // return queue.call(items, function (item) {
         //     return jsdom.JSDOM.fromURL(item.url, {

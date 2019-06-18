@@ -1,21 +1,19 @@
 
 var page = view();
 page.innerHTML = login;
-var go_args;
 var forms = page.querySelectorAll('form');
 render(page, {
-    loading: {},
     go,
     user,
     input,
     field,
     pswd: password,
     button,
-    username: user.name || "",
-    password: null,
+    username: user.name || "guest",
+    password: "123456",
     request(name, password) {
         var that = this;
-        var login = this.loading;
+        var login = this.login;
         login.ing = true;
         api("_session", {
             name,
@@ -28,8 +26,7 @@ render(page, {
                 var session = cross.getCookies(config.api_domain);
                 user._passport = encode62.encode62(password, session);
                 user.saveSession(session);
-                if (!go_args.length) go("/main");
-                else go.apply(null, go_args);
+                page.$reload();
             });
         }).error(function (result) {
             login.ing = false;
@@ -38,12 +35,16 @@ render(page, {
 
     },
     login() {
-        this.request(this.username, this.password);
+        this.request(this.username || "", this.password || "");
     }
 });
+page.onsubmit = function () {
+    this.$scope.login();
+};
+
+window._page2 = page;
 var [_username, _password, _loginBtn] = page.children;
 
 function main(args) {
-    go_args = args instanceof Array ? args : [];
     return page;
 }
