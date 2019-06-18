@@ -10,7 +10,7 @@ render(page, {
     pswd: password,
     button,
     username: user.name || "guest",
-    password: "123456",
+    password: "",
     request(name, password) {
         var that = this;
         var login = this.login;
