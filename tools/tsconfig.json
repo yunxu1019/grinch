@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "outFile": "../coms/jsdom.js",
+        "allowJs": false,
+        "target": "es5"
+    },
+    "include": [
+        "../coms/*.ts"
+    ]
+}

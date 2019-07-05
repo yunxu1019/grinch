@@ -7,6 +7,9 @@ function main(item) {
         btn: button,
         go,
         input,
+        isedit: false,
+        user,
+        getIcon,
         remove() {
             this.remove.ing = true;
             var data = this.data;
@@ -23,9 +26,11 @@ function main(item) {
             var data = this.data;
             if (!data._id) return;
             this.save.ing = true;
-            api(data._rev ? "post" : "put", `/grinch/${data._id}`, data).success(() => {
+            api("put", `/grinch/${data._id}`, data).success(() => {
                 alert("保存成功");
-                this.close();
+                this.isedit = false;
+                this.save.ing = false;
+                render.refresh();
             }).error(() => {
                 alert("保存失败！", "error");
                 this.save.ing = false;

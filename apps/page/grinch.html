@@ -4,6 +4,10 @@
 <list ng-src="item in items" min-width=240>
     <div class="item" ng-click="popup('#/page/edit',item)">
         <span ng-bind="item.name"></span>
-        <span ng-bind="item.date"></span>
+        <span class="time" ng-bind="filterTime(item.date)"></span>
+        <a ng-click="event.stopPropagation();" target="blank" _title="'打开'+item.name" _href="item.url">
+            <img class="icon" ng-src="getIcon(item)" />
+            <span ng-bind="item.url"></span>
+        </a>
     </div>
 </list>

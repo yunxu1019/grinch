@@ -1,14 +1,58 @@
-.item{
-    display: block;
-    position: relative;
-    background: #fff;
+.item {
+    display    : block;
+    position   : relative;
+    background : #fff;
     line-height: 30px;
-    padding: 0 10px;
-    &+.item{
+    padding    : 0 10px;
+
+    &+.item {
         border-top: 1px solid #ddd;
     }
-    >span{
-        padding: 0 10px;
-        display: inline-block;
+
+    >span,
+    >a {
+        padding      : 0 10px;
+        display      : block;
+        white-space  : nowrap;
+        overflow     : hidden;
+        text-overflow: ellipsis;
+    }
+
+    >a {
+        cursor: pointer;
+    }
+
+    .time {
+        position : absolute;
+        right    : 0;
+        top      : 0;
+        color    : #999;
+        font-size: 12px;
+    }
+
+    .icon {
+        width         : 20px;
+        height        : 20px;
+        margin-right  : 4px;
+        vertical-align: middle;
+    }
+}
+
+bar {
+    position   : relative;
+    left       : 0;
+    right      : 0;
+    width      : 100%;
+    display    : block;
+    text-align : right;
+    line-height: 0;
+
+    btn {
+        box-sizing : border-box;
+        min-width  : 60px;
+        padding    : 0 16px;
+        line-height: 44px;
+        height     : 44px;
+        margin     : 0;
     }
 }

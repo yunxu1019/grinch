@@ -5,26 +5,38 @@
 <div class="body">
     <field>
         <div>ID</div>
-        <div><input ng-model=data._id></div>
+        <div><input ng-model=data._id _disabled="!isedit"></div>
     </field>
     <field>
         <div>创建时间</div>
         <div><input disabled ng-model="data.date" type=date /></div>
     </field>
+    <field class="icon">
+        <div>图标</div>
+        <div><input ng-model="data.icon" _disabled="!isedit" /></div>
+        <div>
+            <img ng-src="getIcon(data)" />
+        </div>
+    </field>
     <field>
         <div>名称</div>
-        <div><input ng-model=data.name></div>
+        <div><input ng-model=data.name _disabled="!isedit"></div>
     </field>
     <field>
         <div>地址</div>
-        <div><input ng-model=data.url></div>
+        <div><input ng-model=data.url _disabled="!isedit"></div>
     </field>
 </div>
-<div class="foot">
-    <btn ng-if=save.ing>正在保存</btn>
-    <btn ng-if=!save.ing ng-click="save.ing=true,save()">确定</btn>
+<div class="foot" ng-if="isedit">
     <btn ng-if="remove.ing" type="danger">正在删除</btn>
     <btn ng-if="!remove.ing&&data._rev" ng-click="remove()" type="danger">删除</btn>
+    <btn ng-if=save.ing>正在保存</btn>
+    <btn ng-if=!save.ing ng-click="save.ing=true,save()">确定</btn>
+    <btn type="white" ng-click="isedit=false">取消</btn>
+</div>
+<div class="foot" ng-if="!isedit">
+    <btn ng-if=save.ing>正在保存</btn>
+    <btn ng-if="!save.ing&&user._id===data.author" ng-click="isedit=true">编辑</btn>
     <btn type="white" ng-if="close.ing">取消</btn>
     <btn type="white" ng-if="!close.ing" ng-click="close.ing=true,close(-1)">取消</btn>
 </div>

@@ -2,10 +2,14 @@ var page = div();
 page.innerHTML = grinch;
 var scope = render(page, {
     items: [],
+    user,
+    filterTime,
     btn: button,
     list: lattice,
+    getIcon,
+    alert,
     load() {
-        cross("post", "http://efront.cc:5989/grinch/_find").send({
+        var xhr = cross("post", "http://efront.cc:5989/grinch/_find").send({
             "selector": {
             },
             skip: 0,
@@ -15,12 +19,17 @@ var scope = render(page, {
             var items = JSON.parse(xhr.responseText).docs;
             scope.items = items;
             render.digest();
-            // return queue.call(items, function (item) {
-            //     return jsdom.JSDOM.fromURL(item.url, {
-            //         userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
-            //     });
+        });
+    },
+    grinch() {
+        return queue.call(this.items, function (item) {
+            // return jsdom.JSDOM.fromURL(item.url, {
+            //     userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
             // });
         });
+    },
+    open(url) {
+        window.open(url, "_child");
     },
     popup() {
         var elem = popup.apply(null, arguments);
@@ -30,6 +39,8 @@ var scope = render(page, {
     },
 }).$scope;
 function main() {
+    console.log(page);
+
     scope.load();
     return page;
 }

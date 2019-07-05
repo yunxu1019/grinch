@@ -21,5 +21,8 @@
   "homepage": "https://github.com/yunxu1019/grinch#readme",
   "dependencies": {
     "jsdom": "^15.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.10"
   }
 }
