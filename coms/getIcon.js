@@ -5,5 +5,5 @@ function getIcon(item) {
     if (!reg.test(item.url)) return item.icon;
     if (/^\//.test(item.icon))
         return item.url.replace(/^((?:https?\:)?(?:\/\/)?[^\/]+\/)[\s\S]+$/i, "$1") + item.icon;
-    return item.url.replace(/[\?\#][\s\S]*$/, "").replace(/[^\/]$/, item.icon);
+    return item.url.replace(/[\?\#][\s\S]*$/, "").replace(/[^\/]*$/, item.icon);
 }
