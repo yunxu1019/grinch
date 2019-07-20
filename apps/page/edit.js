@@ -2,12 +2,15 @@ var page = view();
 login();
 function main(item) {
     page.innerHTML = edit;
+    if (!item._rev) {
+        item.author = user.name;
+    }
     render(page, {
         field,
         btn: button,
         go,
         input,
-        isedit: false,
+        isedit: !item._rev,
         user,
         getIcon,
         remove() {
@@ -30,6 +33,9 @@ function main(item) {
                 alert("保存成功");
                 this.isedit = false;
                 this.save.ing = false;
+                if (!item._rev) {
+                    this.close();
+                }
                 render.refresh();
             }).error(() => {
                 alert("保存失败！", "error");

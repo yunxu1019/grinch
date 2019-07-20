@@ -2,12 +2,18 @@
     <btn ng-click="popup('#/page/edit')">添加</btn>
 </bar>
 <list ng-src="item in items" min-width=240>
-    <div class="item" ng-click="popup('#/page/edit',item)">
-        <span ng-bind="item.name"></span>
-        <span class="time" ng-bind="filterTime(item.date)"></span>
-        <a ng-click="event.stopPropagation();" target="blank" _title="'打开'+item.name" _href="item.url">
-            <img class="icon" ng-src="getIcon(item)" />
-            <span ng-bind="item.url"></span>
-        </a>
+    <div class="pad">
+        <div class="item" ng-click="popup('#/page/edit',item)">
+            <div class="after">
+            </div>
+            <div class="before">
+            </div>
+            <span ng-bind="item.name"></span>
+            <span class="time" ng-bind="filterTime(item.date)"></span>
+            <a ng-click="event.stopPropagation();" target="blank" _title="'打开'+item.name" _href="item.url">
+                <img class="icon" ng-src="getIcon(item)" />
+                <span ng-bind="item.url"></span>
+            </a>
+        </div>
     </div>
 </list>

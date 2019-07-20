@@ -39,8 +39,6 @@ var scope = render(page, {
     },
 }).$scope;
 function main() {
-    console.log(page);
-
     scope.load();
     return page;
 }
