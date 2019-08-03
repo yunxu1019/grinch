@@ -35,7 +35,6 @@
     <meta name="viewport"
         content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width" />
     <title>Grinch 互联网刷访问量工具</title>
-    <link rel="stylesheet" href="fonts/font-awesome.css">
     <script deleteoncompile>
         -function (body, window) {
             body.removeChild(body.getElementsByTagName("script")[0]);
@@ -49,9 +48,94 @@
             xhr.send("step into my sight..");
         }.call(this, document.documentElement.children[0], this);
     </script>
+    <style>
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+        @keyframes loading-rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes loading-ease {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(90deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        body>[loading] {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -5em;
+            margin-left: -5em;
+            line-height: 10em;
+            height: 10em;
+            width: 10em;
+            font-size: 10px;
+            text-align: center;
+            vertical-align: bottom;
+        }
+
+        body>[loading]>.loader {
+            top: 0;
+            position: absolute;
+            overflow: hidden;
+            width: 10em;
+            height: 5em;
+            transform-origin: 5em 5em;
+            animation: loading-rotate 2s ease .2s infinite;
+
+        }
+
+        body>[loading]>.loader:after {
+            position: absolute;
+            width: 10em;
+            top: 0;
+            height: 10em;
+            content: "";
+            border-radius: 50%;
+            border: 1em solid #0088ff;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            overflow: hidden;
+            display: block;
+            animation: loading-ease 2s ease .2s infinite;
+        }
+
+        body>[loading]:last-child {
+            display: block;
+        }
+    </style>
 </head>
 
 <body scroll=no max-render=1440 main-path="/main">
+    <div loading>
+        loading..
+        <div class="loader">
+        </div>
+    </div>
 </body>
 
 </html>

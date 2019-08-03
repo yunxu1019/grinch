@@ -13,5 +13,10 @@ user.loadSession().then(function (session) {
         alert.error(JSON.parse(error).reason);
     });
 });
+script('lib/d3/d3.js');
+var link = document.createElement('link');
+link.rel = "stylesheet";
+link.href = "fonts/font-awesome.css";
+document.head.appendChild(link);
 zimoli.switch('/', null, '/page/grinch');
 zimoli();
