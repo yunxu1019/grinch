@@ -36,6 +36,9 @@ render(page, {
     },
     login() {
         this.request(this.username || "", this.password || "");
+    },
+    close() {
+        remove(page.mask || page);
     }
 });
 page.onsubmit = function () {

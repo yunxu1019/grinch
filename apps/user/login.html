@@ -17,4 +17,5 @@
     <button type="submit" ng-if='!login.ing'>
         登录</button>
     <button ng-if='login.ing' class='busy'>登录中</button>
+    <button type="white" ng-click='event.preventDefault(),close()'>取消</button>
 </div>
