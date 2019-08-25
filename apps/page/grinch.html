@@ -1,9 +1,6 @@
-<bar>
-    <btn ng-click="popup('#/page/edit')">添加</btn>
-</bar>
 <list ng-src="item in items" min-width=240>
     <div class="pad">
-        <div class="item" ng-click="popup('#/page/edit',item)">
+        <itemelem class="item" ng-click="popup('#/page/edit',item)" ng-style="{'background-image':'url(\''+encode(item.href)+'\')'}">
             <div class="after">
             </div>
             <div class="before">
@@ -14,6 +11,6 @@
                 <img class="icon" ng-src="getIcon(item)" />
                 <span ng-bind="item.url"></span>
             </a>
-        </div>
+        </itemelem>
     </div>
 </list>

@@ -1,0 +1,81 @@
+[
+    {
+        "name": "助推站点",
+        "path": "/page/grinch",
+        "data": {
+            "type": "grinch"
+        }
+    },
+    {
+        "name": "数据刷",
+        "children": [
+            {
+                "path": "/page/grap",
+                "name": "github",
+                "data": {
+                    "type": "catalog"
+                }
+            }
+        ]
+    },
+    {
+        "name": "编目管理",
+        "path": "/page/grinch",
+        "data": {
+            "type": "catalog"
+        }
+    },
+    {
+        "name": "音乐",
+        "children": [
+            {
+                "path": "/music/list",
+                "name": "新歌",
+                "data": {
+                    "type": "photos",
+                    "sort": "year"
+                }
+            },
+            {
+                "path": "/music/list",
+                "name": "排行",
+                "data": {
+                    "type": "photos",
+                    "sort": "year"
+                }
+            },
+            {
+                "path": "/music/list",
+                "name": "歌单",
+                "data": {
+                    "type": "photos",
+                    "sort": "year"
+                }
+            },
+            {
+                "path": "/music/list",
+                "name": "歌手",
+                "data": {
+                    "type": "photos",
+                    "sort": "year"
+                }
+            }
+        ]
+    },
+    {
+        "name": "图片",
+        "path": "/page/grinch",
+        "data": {
+            "type": "photos",
+            "sort": "year"
+        },
+        "roles": [
+            "wife"
+        ]
+    },
+    {
+        "name": "类型库",
+        "path": "/page/type",
+        "data": {}
+    }
+]

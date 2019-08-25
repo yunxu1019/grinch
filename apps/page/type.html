@@ -1,0 +1,36 @@
+<div>
+    <div>
+        class <input class="type-name" ng-model=item.name /> {
+    </div>
+    <div ng-if=item.properties?.length>
+
+        <div class="col">
+            <div ng-repeat="prop in item.properties">
+                <input class="prop-name" ng-model=prop.name />:
+            </div>
+        </div>
+        <div class="col">
+            <div ng-repeat="prop in item.properties">
+                <select class="prop-type" ng-model=prop.type>
+                    <option ng-bind=type.name _value=type.key ng-repeat="type in baseTypes"></option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div ng-repeat="prop in item.properties">
+                <input class="prop-value" ng-model=prop.value />
+            </div>
+        </div>
+        <div class="col">
+            <div ng-repeat="(prop,i) in item.properties">
+                <i class="remove fa fa-remove" ng-click=item.properties.splice(i,1)></i>
+            </div>
+        </div>
+    </div>
+    <div>
+        <btn class="add-prop" ng-click="addProperty()">添加</btn>
+    </div>
+    <div>
+        }
+    </div>
+</div>
