@@ -1,0 +1,10 @@
+<lattice elementid=list item-width=200 ng-src="item in items">
+    <div class="item" ng-click="play(item)">
+        <div class="inner">
+            <div class="name" ng-bind="item.name"></div>
+        </div>
+    </div>
+</lattice>
+<div class="loading" ng-if=!items||items?.is_loading>
+    正在加载..
+</div>

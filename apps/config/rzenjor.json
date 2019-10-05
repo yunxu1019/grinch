@@ -1,0 +1,17 @@
+{
+    "http://rzenjor.com:9999/index/": {
+        "login": "       get:data        user/login_auto?imei=D676B418-3F64-4711-AC80-919E57168443&uid=219989",
+        "banner": "      get:data       banner/index?token&type",
+        "kefu": "        get:data         index/h5_kefu?token",
+        "userinfo": "    get:data     center/userinfo?token",
+        "viptimeend": "  get:data   pay/viptimeend?token",
+        "isvip": "       get:data        pay/isvip?token",
+        "videoindex": "  get:data   video/videoindex?token",
+        "videolist": "   get:data    video/videolist?token&limit&page&type&classid",
+        "actor": "       get:data        video/getactor?token",
+        "zhuanti": "     get:data      video/zhuantilist?token",
+        "warning": "     get:data      index/app_warning?token",
+        "search-video": "get:data      video/search?address&clarity&classid&lang&length&mosaic&page&token&year",
+        "version": "     get:data      index/app_version?token&type"
+    }
+}

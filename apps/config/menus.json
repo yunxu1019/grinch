@@ -32,32 +32,28 @@
                 "path": "/music/list",
                 "name": "新歌",
                 "data": {
-                    "type": "photos",
-                    "sort": "year"
+                    "api": "songs-list"
                 }
             },
             {
                 "path": "/music/list",
                 "name": "排行",
                 "data": {
-                    "type": "photos",
-                    "sort": "year"
+                    "api": "rank-list"
                 }
             },
             {
                 "path": "/music/list",
                 "name": "歌单",
                 "data": {
-                    "type": "photos",
-                    "sort": "year"
+                    "api": "plist-index"
                 }
             },
             {
                 "path": "/music/list",
                 "name": "歌手",
                 "data": {
-                    "type": "photos",
-                    "sort": "year"
+                    "api": "singer-class"
                 }
             }
         ]

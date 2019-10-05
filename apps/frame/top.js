@@ -10,7 +10,7 @@ render(page, {
             return;
         }
         if (option.path) {
-            var elem = popup("#" + option.path, option);
+            var elem = popup(option.path, option);
             css(elem, {
                 width: "300px",
                 height: '200px'

@@ -16,5 +16,7 @@ user.loadSession().then(function (session) {
 var link = document.createElement('link');
 link.rel = "stylesheet";
 link.href = "fonts/font-awesome.css";
-document.head.appendChild(link);
+data.loadConfig("config/api.json");
+document.documentElement.firstChild.appendChild(link);
 zimoli('/frame/main');
+// imk();

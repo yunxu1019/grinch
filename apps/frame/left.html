@@ -3,6 +3,6 @@
     GRINCH
     <span class="dashboard_text">efront.cc</span>
 </div>
-<ylist mode=inline ng-src="menu in menus.filter(checkroles)" class="sidebar-menu" ng-active="open(event)">
+<ylist mode=inline ng-src="menu in menus" class="sidebar-menu" ng-active="menus.open(event.value)">
 </ylist>
 <btn class="setting" ng-click="go('/user/setting')"><i class="fa fa-gear"></i>设置</btn>
