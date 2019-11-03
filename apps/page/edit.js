@@ -1,6 +1,6 @@
-var page = view();
 login();
-function main(item) {
+function main({ fields_ref, fields, item = {}, item_ref }) {
+    var page = view();
     page.innerHTML = edit;
     if (!item._rev) {
         item.author = user.name;
@@ -12,6 +12,9 @@ function main(item) {
         input,
         isedit: !item._rev,
         user,
+        fields: fields || data.from(fields_ref, item._id ? parseFields : function (items) {
+            return parseFields(items).filter(a => 'key' in a && !a.is_append);
+        }),
         getIcon,
         remove() {
             this.remove.ing = true;
@@ -43,8 +46,12 @@ function main(item) {
                 render.refresh();
             });
         },
+        getHeight() {
+            var fields = this.fields;
+            return fromPixel((fields.length > 6 ? 6 : fields.length || 6) * 44 + 32);
+        },
         close() {
-            remove(page.mask);
+            remove(page.mask || page);
         },
         data: Object.assign({ _id: user.name + ":" + +new Date, date: +new Date() }, item)
     });

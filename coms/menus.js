@@ -1,4 +1,4 @@
-data.fromURL('config/menus.json').loading_promise.then(function (data) {
+data.fromURL('config/menus.json').loading_promise.then(function (items) {
     var result = [];
     var menuid = 0;
     var savedChildren = {};
@@ -14,7 +14,7 @@ data.fromURL('config/menus.json').loading_promise.then(function (data) {
             }
         }
     };
-    data.map(getChildren);
+    items.map(getChildren);
     result.update = function () {
         var historys = zimoli.getCurrentHistory();
         var map = {};
@@ -34,7 +34,7 @@ data.fromURL('config/menus.json').loading_promise.then(function (data) {
             }
             return res;
         };
-        result.push.apply(result, data.filter(a));
+        result.push.apply(result, items.filter(a));
         var active = result.active;
         if (!active || result.indexOf(active) < 0) {
             active = actived || result[0];
@@ -59,6 +59,7 @@ data.fromURL('config/menus.json').loading_promise.then(function (data) {
         }
         setActive(menu, true);
         zimoli.go(menu.path, menu.data);
+        data.setInstance("option-buttons", menu.options || [], false);
         result.active = menu;
     };
     result.update();

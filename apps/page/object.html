@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <td>序号</td>
+            <td ng-repeat="i in fields" ng-if="i?.is_inlist">
+                <span ng-bind=i.name></span>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="(i,cx) in items" ng-click="edit(i)">
+            <td><span ng-bind=cx+1></span></td>
+            <td ng-if="f?.is_inlist" ng-repeat="f in fields">
+                <span ng-if="f?.key" ng-bind=i[f.key]></span>&nbsp;
+                <button ng-if="f.options&&o" _type=o.type ng-repeat="o in f.options">
+                    <span ng-bind=o.name></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot></tfoot>
+</table>

@@ -10,17 +10,14 @@ render(page, {
             return;
         }
         if (option.path) {
-            var elem = popup(option.path, option);
-            css(elem, {
-                width: "300px",
-                height: '200px'
-            });
-            drag.on(elem);
+            popup(option.path, option.data);
         }
     },
     logout() {
         user.Logout();
     },
+    fullscreen,
+    alert,
     input() {
         return input();
     },

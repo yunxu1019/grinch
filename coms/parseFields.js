@@ -1,0 +1,42 @@
+var parseFields = function (data) {
+    if (!data) return;
+    var keys;
+    if (typeof data[0] === "string") {
+        keys = data[0].split(/\s+/);
+    } else if (data[0] instanceof Array) {
+        keys = data[0];
+    } else {
+        keys = "key name type".split(/\s+/);
+    }
+    data = data.slice(1).map(function (string) {
+        if (typeof string === "string") {
+            string = string.split(/\s+/);
+        }
+        if (string instanceof Array) {
+            var res = {};
+            keys.forEach((k, i) => res[k] = string[i]);
+            if (res.key) {
+                var is_inlist = /^[\+\!]|^[\+\!]$/.test(res.key);
+                var is_hidden = /^\-|\-$/.test(res.key);
+                var is_append = /^\$|\$$/.test(res.key);// 服务器追加的属性
+                var is_inform = !/^\!|\!$/.test(res.key);
+                var is_editable = !/^\&|\&$/.test(res.key);// 创建后不能修改的属性
+                var is_required = /^\*|\*$/.test(res.key);
+                var delete_onempty = /^\?|\?$/.test(res.key);
+                var delete_onsubmit = /^\~|\~$/.test(res.key);
+                res.key = res.key.replace(/^[\?\~\*\!\+\-]|[\?\~\*\!\+\-]$/g, '');
+                if (is_inlist) res.is_inlist = true;
+                if (is_hidden) res.is_hidden = true;
+                if (is_append) res.is_append = true;
+                if (!is_inform) res.is_inform = false;
+                if (is_required) res.is_required = true;
+                if (!is_editable) res.is_editable = false;
+                if (delete_onempty) res.delete_onempty = true;
+                if (delete_onsubmit) res.delete_onsubmit = true;
+            }
+            return res;
+        }
+        return string;
+    });
+    return data;
+};

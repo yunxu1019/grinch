@@ -5,7 +5,7 @@
   "main": "public/index",
   "bin": "public/index",
   "scripts": {
-    "start":"efront serve.js",
+    "start": "efront serve.js",
     "test": "efront index.js",
     "install": "node .",
     "prepare": "set app=index.js&&efront build&&echo #!/usr/bin/env node>public\\index&&type public\\comm\\index>>public\\index&&rd /s /q public\\comm"

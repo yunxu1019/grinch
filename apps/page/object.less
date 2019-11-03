@@ -1,0 +1,81 @@
+.item {
+    display       : inline-block;
+    height        : 90px;
+    vertical-align: top;
+    position      : relative;
+
+    >div {
+        padding: 16px;
+    }
+
+    .name {
+        white-space  : nowrap;
+        overflow     : hidden;
+        text-overflow: ellipsis;
+    }
+
+    .inner {
+        color        : #666;
+        display      : block;
+        content      : "";
+        position     : absolute;
+        @offset      : 6px;
+        left         : @offset;
+        top          : @offset;
+        right        : @offset;
+        bottom       : @offset;
+        background   : #ffffffbb;
+        border       : 1px solid rgba(0, 0, 0, .16);
+        border-radius: 3px;
+
+        &:hover {
+            background: #ffffff;
+        }
+
+        &:active {
+            background: #f0f2f4;
+        }
+
+    }
+
+}
+
+& {
+    background: #fff;
+    padding   : 0 !important;
+}
+
+
+table {
+    padding-top   : 48px;
+    padding-bottom: 6px;
+    background    : #f2f4f6;
+}
+
+.play.player+.glance &,
+.pause.player+.glance & {
+    lattice {
+        padding-bottom: 66px;
+    }
+}
+
+.loading {
+    color          : #333;
+    background     : #ffffff33;
+    backdrop-filter: blur(10px);
+    position       : absolute;
+    left           : 0;
+    right          : 0;
+    bottom         : 0;
+    text-align     : center;
+    top            : 0;
+
+    &:before {
+        content      : "";
+        display      : block;
+        height       : 30%;
+        margin-bottom: -20px;
+    }
+
+    line-height: 40px;
+}
