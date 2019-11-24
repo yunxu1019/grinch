@@ -5,7 +5,7 @@ render(page, {
     btn: button,
     go,
     user,
-    menus,
+    menus: route,
 });
 function main() {
     return page;

@@ -18,6 +18,7 @@ render(page, {
     },
     fullscreen,
     alert,
+    route,
     input() {
         return input();
     },
