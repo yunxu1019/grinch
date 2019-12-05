@@ -37,8 +37,13 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
         result.push.apply(result, items.filter(a));
         var active = result.active;
         if (!active || result.indexOf(active) < 0) {
-            active = actived || result[0];
-            result.open(active);
+            if (actived) {
+                if (active && active !== actived) setActive(active, false);
+                if (actived_value === historys.length) result.open(actived);
+                else setActive(actived, true);
+            } else {
+                result.open(result[0]);
+            }
         }
     };
     var setActive = function (p, active) {
