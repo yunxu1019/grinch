@@ -3,15 +3,17 @@ page.innerHTML = top;
 render(page, {
     btn: button,
     user,
+    data,
     options: data.getInstance("option-buttons"),
+
     open(option) {
-        if (option.do instanceof Function) {
-            option.do();
-            return;
-        }
-        if (option.path) {
-            popup(option.path, option.data);
-        }
+        action(option).then(function (page) {
+            if (isNode(page)) {
+                on("submitted")(page, function () {
+                    route.reload();
+                });
+            }
+        });
     },
     logout() {
         user.Logout();

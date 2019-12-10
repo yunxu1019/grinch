@@ -9,7 +9,7 @@
         <i class="fa fa-expand"></i>
     </btn>
     <btn class="menu-item menu-switch" ng-click="route.reload()">
-        <i class="fa fa-refresh"></i>
+        <i class="fa fa-refresh" ng-class="{'fa-pulse':data.loading_count>0}"></i>
     </btn>
     <btn class="menu-item" @title="option.name" ng-click="open(option)" ng-repeat="option in options" pop>
         <i class="fa" ng-class="option.icon"></i>
