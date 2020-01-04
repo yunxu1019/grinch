@@ -1,6 +1,9 @@
 <div class="head" ng-if="isedit">
-    <span ng-if="data._id">编辑</span>
-    <span ng-if="!data._id">添加</span>
+    <span ng-if="!title">
+        <span ng-if="data._id">编辑</span>
+        <span ng-if="!data._id">添加</span>
+    </span>
+    <span ng-if="title" ng-bind=title></span>
 </div>
 <div class="head" ng-if="!isedit">
     详情
@@ -11,10 +14,12 @@
         <div><input ng-model=data._id _disabled="!isedit"></div>
     </field> -->
     <field ng-repeat="f in fields">
-        <div>
+        <div ng-click="editField(f)">
             <span ng-bind=f.name></span>
         </div>
-        <div><input ng-model=data[f.key] _disabled="!isedit"></div>
+        <div>
+            <model _readonly=!isedit||f.is_append||f.is_readonly _data=data _field=f></model>
+        </div>
     </field>
     <!-- <field>
         <div>地址</div>
@@ -34,14 +39,14 @@
 </div>
 <div class="foot" ng-if="isedit">
     <btn ng-if="remove.ing" type="danger">正在删除</btn>
-    <btn ng-if="!remove.ing&&data._rev" ng-click="remove()" type="danger">删除</btn>
+    <btn ng-if="!remove.ing&&has_rev" ng-click="remove()" type="danger">删除</btn>
     <btn ng-if=save.ing>正在保存</btn>
-    <btn ng-if=!save.ing ng-click="save.ing=true,save()">确定</btn>
-    <btn type="white" ng-click="!data._rev?close():(isedit=false)">取消</btn>
+    <btn ng-if=!save.ing ng-click="save()" disabled.=!valid>确定</btn>
+    <btn type="white" ng-click="!has_rev?close():(isedit=false)">取消</btn>
 </div>
 <div class="foot" ng-if="!isedit">
     <btn ng-if=save.ing>正在保存</btn>
-    <btn ng-if="!save.ing&&user.name===data.author" ng-click="isedit=true">编辑</btn>
+    <btn ng-click="isedit=true">编辑</btn>
     <btn type="white" ng-if="close.ing">取消</btn>
     <btn type="white" ng-if="!close.ing" ng-click="close.ing=true,close(-1)">取消</btn>
 </div>

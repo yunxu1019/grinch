@@ -3,23 +3,6 @@ function main(argitem) {
     var passport = encode62.timeencode(encode62.decode62(user._passport, user.session));
     var page = div();
     page.innerHTML = grinch;
-    var popPage = function () {
-        popup(this.path);
-    };
-    data.setInstance("option-buttons", [
-        {
-            name: "添加",
-            icon: "fa-file",
-            path: "#/page/edit",
-            do: popPage
-        },
-        {
-            name: "添加目录",
-            icon: "fa-folder",
-            path: "#/folder/edit",
-            do: popPage
-        }
-    ]);
     var scope = render(page, {
         items: [],
         user,
@@ -29,6 +12,7 @@ function main(argitem) {
         getIcon,
         alert,
         parentId: undefined,
+        a: button,
         encode(src) {
             return "http://efront.cc/@/data/xiaohua/photos" + src.replace(/\.?[^\.]+$/, function (m) {
                 passport = encode62.timeupdate(passport);
@@ -37,6 +21,16 @@ function main(argitem) {
         },
         itemelem(elem) {
             return elem;
+        },
+        edit(item) {
+            action({
+                modal: {
+                    path: '/page/edit',
+                    fields_ref: "config/fields/site.json",
+                    actionId:'update-site',
+                    item
+                }
+            });
         },
         load() {
             var xhr = cross("post", `http://efront.cc:5989/${argitem.type}/_find`).send({

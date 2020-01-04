@@ -1,0 +1,8 @@
+[
+    "key             name        type",
+    {
+        "name": "数据库名",
+        "key": "*name",
+        "type": "repeat?db_name"
+    }
+]

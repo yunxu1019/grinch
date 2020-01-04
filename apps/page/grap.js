@@ -1,26 +1,21 @@
 var page = div();
 page.innerHTML = grap;
-function main(data) {
+function main(params) {
     render(page, {
         button,
-        login() {
-            cross("post", "https://github.com/session").form({
-                commit: "Sign in",
-                utf8: "✓",
-                authenticity_token: "BgtsUt3eC5OmyMrVbjK4mMFJxoyFJCuDUIcI4HDLpIhACByB16TxqxjlEal2vVMRKaW8MtqKaXdH2C0cmR3EMw==",
-                login: "yunxu1019",
-                password: "3f2f21o2e",
-                "webauthn-support": "supported",
-                "required_field_9c32": "",
-                "timestamp": "1566317611144",
-                timestamp_secret: "b2f43b73e9bdffb42b5d193d0bcb22a23fd60e9b179d207d248e0c447bf74f5c"
-            });
+        api: {
+            url: 'https://torrentkitty.se/search/mkbd/:page',
+            method: 'get'
         },
-        logout() {
-            cross("post", "https://github.com/logout").form({
-                utf8: "✓",
-                authenticity_token: ""
-            });
+        search() {
+            var { url, method } = this.api;
+            console.log(data);
+            data.fromApi({
+                method,
+                url
+            }, { page: 1 }).loading_promise.then(function (res) {
+                console.log(res);
+            })
         }
     })
     return page;

@@ -1,2 +1,7 @@
-<button>开始</button>
-<button>结束</button>
+<input ng-model=api.method placeholder="地址">
+<input ng-model=api.url placeholder="地址">
+<button ng-click=search()>搜索</button>
+<textarea ng-model="api.result"></textarea>
+<list ng-src="item in results">
+    <result></result>
+</list>

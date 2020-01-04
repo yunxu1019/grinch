@@ -7,6 +7,7 @@ render(page, {
     options: data.getInstance("option-buttons"),
 
     open(option) {
+        console.log(action)
         action(option).then(function (page) {
             if (isNode(page)) {
                 on("submitted")(page, function () {

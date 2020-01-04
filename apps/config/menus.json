@@ -4,14 +4,25 @@
         "path": "/page/grinch",
         "data": {
             "type": "grinch"
-        }
+        },
+        "options": [
+            {
+                "icon": "fa-plus",
+                "name": "添加",
+                "modal": {
+                    "path": "#/page/edit",
+                    "actionId": "add-site",
+                    "fields_ref": "./config/fields/site.json"
+                }
+            }
+        ]
     },
     {
         "name": "数据刷",
         "children": [
             {
                 "path": "/page/grap",
-                "name": "github",
+                "name": "search",
                 "data": {
                     "type": "catalog"
                 }
@@ -72,7 +83,12 @@
     {
         "name": "数据库",
         "path": "/page/object",
+        "icon": "fa fa-database",
+        "need": [
+            "_admin"
+        ],
         "data": {
+            "action": "/page/database",
             "data_ref": "all-dbs",
             "fields_ref": "./config/fields/db.json"
         },
@@ -80,8 +96,9 @@
             {
                 "icon": "fa-plus",
                 "name": "添加",
-                "path": "/page/edit",
-                "data": {
+                "modal": {
+                    "path": "/page/edit",
+                    "actionId": "add-db",
                     "fields_ref": "./config/fields/db.json"
                 }
             }
@@ -98,8 +115,8 @@
             {
                 "icon": "fa-plus",
                 "name": "添加",
-                "path": "/page/edit",
-                "data": {
+                "modal": {
+                    "path": "/page/field",
                     "fields_ref": "./config/fields/db.json"
                 }
             }
@@ -112,9 +129,5 @@
             "data_ref": "config/fields/object.json",
             "fields_ref": "./config/fields/object.json"
         }
-    },
-    {
-        "name": "代码工厂",
-        "path": "/learn/test"
     }
 ]

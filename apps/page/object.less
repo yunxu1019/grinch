@@ -40,6 +40,35 @@
 
 }
 
+tr.active {
+    >td:after {
+        content      : "";
+        background   : #0088ff22 !important;
+        display      : block;
+        position     : absolute;
+        top          : 0;
+        left         : 0;
+        right        : 0;
+        bottom       : 0;
+        border-top   : 1px solid #0088ff;
+        border-bottom: 1px solid #0088ff;
+    }
+
+    >td:last-child:after {
+        border-top-right-radius   : 3px;
+        border-bottom-right-radius: 3px;
+        border-right              : 1px solid #0088ff;
+    }
+
+    >td:first-child:after {
+        border-top-left-radius   : 3px;
+        border-bottom-left-radius: 3px;
+        border-left              : 1px solid #0088ff;
+
+    }
+
+}
+
 & {
     background: #fff;
     padding   : 0 !important;
@@ -78,4 +107,21 @@ table {
     }
 
     line-height: 40px;
+}
+
+.model {
+    display: block;
+    padding: 0 10px;
+
+    &[type=size] {
+        text-align: right;
+    }
+}
+
+button {
+    margin-right: 10px;
+
+    &:last-child {
+        margin-right: 0;
+    }
 }

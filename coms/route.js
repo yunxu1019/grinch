@@ -53,13 +53,12 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
         }
     };
     result.load = function (menu) {
-        zimoli.prepare(menu.path, function (res) {
-            res.roles = menu.need;
-        }, menu.need);
-        zimoli.go(menu.path, menu.data);
-        data.setInstance("option-buttons", menu.options || [], false);
-
+        zimoli.go(menu);
     };
+    on("zimoli")(window, function (event) {
+        var { zimoli } = event;
+        data.setInstance("option-buttons", zimoli.options || [], false);
+    });
     result.open = function (menu) {
         if (menu === result.active) return;
         if (!menu) return;

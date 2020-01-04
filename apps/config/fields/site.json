@@ -1,0 +1,9 @@
+[
+    "key        name         type",
+    "+_id*      ID           text",
+    "+name*     站点名称      text",
+    "+url*      首页链接      text",
+    "+author    作者         text",
+    "+icon      图标         text",
+    "+date      修改日期      date"
+]

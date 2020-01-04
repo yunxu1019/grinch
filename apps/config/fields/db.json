@@ -1,17 +1,27 @@
 [
-    "key           name     type",
-    "+db_name*      数据库    text",
-    "+disk_size     磁盘空间  text",
-    "+doc_count     记录数    text",
+    "key             name        type",
+    "+db_name*       数据库      text",
+    "+data_size$     数据大小    size",
+    "+disk_size$     占用空间    size",
+    "+doc_count$     记录数      text",
     {
         "name": "操作",
+        "key": "!",
         "options": [
             {
-                "name": "编辑"
+                "name": "编辑",
+                "type": "anchor"
             },
             {
                 "name": "删除",
-                "type": "danger"
+                "type": "danger-anchor",
+                "params": "db_name",
+                "modal": {
+                    "title": "确认删除",
+                    "path": "#/page/edit",
+                    "fields_ref": "config/fields/db-delete.json",
+                    "actionId": "del-db"
+                }
             }
         ]
     }

@@ -1,14 +1,15 @@
 <list ng-src="item in items" min-width=240>
     <div class="pad">
-        <itemelem class="item" ng-click="popup('#/page/edit',item)" ng-style="{'background-image':'url(\''+encode(item.href)+'\')'}">
+        <itemelem class="item" ng-click="edit(item)" ng-style="{'background-image':'url(\''+encode(item.href)+'\')'}">
             <div class="after">
             </div>
             <div class="before">
             </div>
-            <span ng-bind="item.name"></span>
+            <img class="icon" ng-src="getIcon(item)" />
+            <span class="name" ng-bind="item.name"></span>
             <span class="time" ng-bind="filterTime(item.date)"></span>
+            <hr/>
             <a ng-click="event.stopPropagation();" target="blank" _title="'打开'+item.name" _href="item.url">
-                <img class="icon" ng-src="getIcon(item)" />
                 <span ng-bind="item.url"></span>
             </a>
         </itemelem>
