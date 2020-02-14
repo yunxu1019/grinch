@@ -4,6 +4,6 @@ function getIcon(item) {
     if (reg.test(item.icon)) return item.icon;
     if (!reg.test(item.url)) return item.icon;
     if (/^\//.test(item.icon))
-        return item.url.replace(/^((?:https?\:)?(?:\/\/)?[^\/]+)[\s\S]+$/i, "$1") + item.icon;
-    return item.url.replace(/[\?\#][\s\S]*$/, "").replace(/^((?:https?\:)?(?:\/\/)?[^\/]+[\s\S]+?)[^\/]*$/, (_, a) => a + '/' + item.icon);
+        return item.url.replace(/^((?:https?\:)?(?:\/\/)?[^\/]+)[\s\S]*$/i, "$1") + item.icon;
+    return item.url.replace(/[\?\#][\s\S]*$/, "").replace(/^((?:https?\:)?(?:\/\/)?[^\/]+[\s\S]*?)\/?[^\/]*$/, (_, a) => a + '/' + item.icon);
 }
