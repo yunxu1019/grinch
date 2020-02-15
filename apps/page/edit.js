@@ -11,6 +11,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
     var page = view();
     var has_rev = !!item;
     if (!item) item = Object.assign({}, params);
+    var editField = false;
 
     page.innerHTML = edit;
     if (!item._rev) {
@@ -68,6 +69,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             });
         },
         editField(f) {
+            if (!editField) return;
             var newField = extend({}, f);
             var $scope = page.$scope;
             action({
@@ -117,13 +119,18 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                 dispatch(page, "submitted");
                 return;
             }
-            var res = data.from(actionId, params).loading_promise.then(() => {
+            var res = data.from(actionId, params);
+            res.loading_promise.then(() => {
                 this.save.ing = false;
                 if (res.is_errored) return;
+                var { $scope } = page;
                 if (!this.has_rev) {
                     this.close();
                     render.refresh();
+                } else if (res.rev) {
+                    $scope.data._rev = res.rev;
                 }
+                $scope.isedit = false;
                 dispatch(page, 'submitted');
             }).catch((e) => {
                 this.save.ing = false;

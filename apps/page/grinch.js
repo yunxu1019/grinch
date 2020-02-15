@@ -27,9 +27,13 @@ function main(argitem) {
                 modal: {
                     path: '/page/edit',
                     fields_ref: "config/fields/site.json",
-                    actionId:'update-site',
+                    actionId: 'update-site',
                     item
                 }
+            }).then(function (page) {
+                on("submitted")(page, function () {
+                    scope.load();
+                })
             });
         },
         load() {
@@ -60,7 +64,7 @@ function main(argitem) {
             var elem = popup.apply(null, arguments);
             once("remove")(elem, () => {
                 this.load();
-            })
+            });
         },
     }).$scope;
 
