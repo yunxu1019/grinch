@@ -61,6 +61,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             var item = this.data;
             api("delete", `/grinch/${item._id}?rev=${item._rev}`).success(() => {
                 alert("删除成功！");
+                dispatch(page,"submitted");
                 this.close();
             }).error(() => {
                 this.remove.ing = false;

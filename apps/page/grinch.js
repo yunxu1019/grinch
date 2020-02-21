@@ -62,8 +62,8 @@ function main(argitem) {
         },
         popup() {
             var elem = popup.apply(null, arguments);
-            once("remove")(elem, () => {
-                this.load();
+            on("submitted")(elem, () => {
+                scope.load();
             });
         },
     }).$scope;
