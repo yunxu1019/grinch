@@ -38,13 +38,15 @@
     </field> -->
 </div>
 <div class="foot" ng-if="isedit">
-    <btn ng-if="remove.ing" type="danger">正在删除</btn>
-    <btn ng-if="!remove.ing&&has_rev" ng-click="remove()" type="danger">删除</btn>
     <btn ng-if=save.ing>正在保存</btn>
     <btn ng-if=!save.ing ng-click="save()" disabled.=!valid>确定</btn>
     <btn type="white" ng-click="!has_rev?close():(isedit=false)">取消</btn>
 </div>
 <div class="foot" ng-if="!isedit">
+    <btn ng-if="remove.ing" type="dark">正在删除</btn>
+    <btn ng-if="!remove.ing&&has_rev" ng-click="remove()" type_="remove.confirm?'dark':'danger'">
+        <span ng-if="remove.confirm">确认</span>删除
+    </btn>
     <btn ng-if=save.ing>正在保存</btn>
     <btn ng-click="isedit=true">编辑</btn>
     <btn type="white" ng-if="close.ing">取消</btn>

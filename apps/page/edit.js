@@ -57,11 +57,19 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         }),
         getIcon,
         remove() {
+            if (!this.remove.confirm) {
+                this.remove.confirm = true;
+                setTimeout(() => {
+                    this.remove.confirm = false;
+                    render.digest();
+                }, 1200);
+                return;
+            }
             this.remove.ing = true;
             var item = this.data;
             api("delete", `/grinch/${item._id}?rev=${item._rev}`).success(() => {
                 alert("删除成功！");
-                dispatch(page,"submitted");
+                dispatch(page, "submitted");
                 this.close();
             }).error(() => {
                 this.remove.ing = false;
