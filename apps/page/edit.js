@@ -124,6 +124,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             res.loading_promise.then(() => {
                 this.save.ing = false;
                 if (res.is_errored) return;
+                dispatch(page, 'submitted');
                 var { $scope } = page;
                 if (!this.has_rev) {
                     this.close();
@@ -132,7 +133,6 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                     $scope.data._rev = res.rev;
                 }
                 $scope.isedit = false;
-                dispatch(page, 'submitted');
             }).catch((e) => {
                 this.save.ing = false;
                 alert(String(e.reason), 'error');
