@@ -11,7 +11,7 @@ function main(argitem) {
         list: lattice,
         getIcon,
         alert,
-        beian,
+        beian: /efront\.cc(\:\d+)?$/i.test(location.host) ? beian : null,
         parentId: undefined,
         a: button,
         encode(src) {
