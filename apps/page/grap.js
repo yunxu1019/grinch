@@ -4,7 +4,7 @@ function main(params) {
     render(page, {
         button,
         api: {
-            url: 'https://torrentkitty.se/search/mkbd/:page',
+            url: 'https://baidu.com',
             method: 'get'
         },
         search() {

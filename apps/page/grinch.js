@@ -11,6 +11,7 @@ function main(argitem) {
         list: lattice,
         getIcon,
         alert,
+        beian,
         parentId: undefined,
         a: button,
         encode(src) {
