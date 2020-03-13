@@ -27,7 +27,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                 if (m && m.valid === false) {
                     valid = false;
                     break;
-                };
+                }
             }
             if (cx === dx) valid = true;
             if (valid !== page.$scope.valid) {
@@ -107,7 +107,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                         $scope.fields = fields.slice(0);
                         $scope.fields.splice(index, 1, newField);
                     }
-                })
+                });
 
             });
         },
@@ -166,7 +166,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         close() {
             remove(page.mask || page);
         },
-        data: extend({ _id: user.name + ":" + +new Date, date: +new Date() }, item)
+        data: extend({ _id: user.name + ":" + (+new Date), date: +new Date }, item)
     });
     console.log(page.renders);
     return page;

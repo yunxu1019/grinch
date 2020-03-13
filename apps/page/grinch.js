@@ -34,7 +34,7 @@ function main(argitem) {
             }).then(function (page) {
                 on("submitted")(page, function () {
                     scope.load();
-                })
+                });
             });
         },
         load() {
