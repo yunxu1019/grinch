@@ -35,16 +35,23 @@ render(page, {
 
     },
     login() {
+        if (this.login.ing) return;
         this.request(this.username || "", this.password || "");
     },
     close() {
-        remove(page.mask || page);
+        history.back();
     }
 });
-page.onsubmit = function () {
-    this.$scope.login();
-};
 
+
+on("submit")(page, function (e) {
+    e.preventDefault();
+});
+on("keydown")(page, function (e) {
+    if (e.which === 13) {
+        this.$scope.login();
+    }
+});
 window._page2 = page;
 var [_username, _password, _loginBtn] = page.children;
 
