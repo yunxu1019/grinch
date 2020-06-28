@@ -1,7 +1,7 @@
 function main(params) {
     var page = vbox();
     page.innerHTML = list;
-    var song = data.asyncInstance(params.api);
+    var song = data.asyncInstance(params.api instanceof Array ? params.api[0] : params.api);
     render(page, {
         lattice,
         items: song,
