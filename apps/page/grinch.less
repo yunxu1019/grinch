@@ -1,35 +1,35 @@
 .item {
-    border             : 1px solid rgba(0, 0, 0, .1);
-    background         : #fff;
-    border-radius      : 3px;
-    position           : relative;
-    line-height        : 32px;
-    display            : block;
-    overflow           : hidden;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 3px;
+    position: relative;
+    line-height: 32px;
+    display: block;
+    overflow: hidden;
     background-position: center;
-    background-size    : cover;
-    background-repeat  : no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     >.after,
     >.before {
         background-color: rgba(90, 200, 250, .1);
-        position        : absolute;
-        border-radius   : 50%;
+        position: absolute;
+        border-radius: 50%;
     }
 
     >.before {
-        width : 60px;
+        width: 60px;
         height: 100px;
         margin: -55px -35px;
-        left  : 0;
-        top   : 0;
+        left: 0;
+        top: 0;
     }
 
     >.after {
-        margin: -100px -100px;
-        width : 300px;
+        margin: -100px -180px;
+        width: 300px;
         height: 200px;
-        right : 0;
+        right: 0;
         bottom: 0;
     }
 
@@ -39,47 +39,50 @@
 
     >span,
     >a {
-        display      : inline-block;
-        white-space  : nowrap;
-        max-width    : 100%;
-        overflow     : hidden;
+        display: inline-block;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
 
     >hr {
-        margin    : 0 2px;
-        border-top: 1px solid #9bc;
+        margin: 0 2px;
+        border: none;
+        border-top: 1px solid #ddd;
+        background: none;
+        height: 0;
     }
 
     >a {
-        cursor        : pointer;
-        font-size     : 8px;
-        line-height   : 1;
+        cursor: pointer;
+        font-size: 8px;
+        line-height: 1;
         vertical-align: middle;
-        padding       : 2px 8px;
+        padding: 2px 8px;
     }
 
     .name {
-        color  : #666;
+        color: #666;
         padding: 2px 8px 0 36px;
     }
 
     .time {
-        position : absolute;
-        right    : 16px;
-        top      : 0;
-        color    : #999;
+        position: absolute;
+        right: 16px;
+        top: 0;
+        color: #999;
         font-size: 12px;
     }
 
     .icon {
-        width         : 20px;
-        height        : 20px;
-        margin-right  : 4px;
-        top           : 8px;
-        left          : 8px;
-        position      : absolute;
-        text-align    : center;
+        width: 20px;
+        height: 20px;
+        margin-right: 4px;
+        top: 8px;
+        left: 8px;
+        position: absolute;
+        text-align: center;
         vertical-align: middle;
     }
 
@@ -87,38 +90,38 @@
 
 .pad {
     box-sizing: border-box;
-    display   : inline-block;
-    position  : relative;
-    padding   : 6px 6px;
+    display: inline-block;
+    position: relative;
+    padding: 6px 6px;
 }
 
 bar {
-    position   : relative;
-    left       : 0;
-    right      : 0;
-    width      : 100%;
-    display    : block;
-    text-align : right;
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: block;
+    text-align: right;
     line-height: 0;
 
     btn {
-        box-sizing : border-box;
-        min-width  : 60px;
-        padding    : 0 16px;
+        box-sizing: border-box;
+        min-width: 60px;
+        padding: 0 16px;
         line-height: 44px;
-        height     : 44px;
-        margin     : 0;
+        height: 44px;
+        margin: 0;
     }
 }
 
 & {
-    position   : relative;
-    height     : 100%;
+    position: relative;
+    height: 100%;
     padding-top: 0;
 }
 
 list {
     padding-top: 48px;
-    position   : relative;
-    height     : 100%;
+    position: relative;
+    height: 100%;
 }
