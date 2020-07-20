@@ -1,5 +1,6 @@
 data.fromURL('config/menus.json').loading_promise.then(function (items) {
     var result = [];
+    var opened = [];
     var menuid = 0;
     var savedChildren = {};
     var getChildren = function (menu) {
@@ -46,6 +47,7 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
             }
         }
     };
+    result.opened = opened;
     var setActive = function (p, active) {
         while (p) {
             p.active = active;
@@ -61,6 +63,9 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
     });
     result.open = function (menu) {
         if (menu === result.active) return;
+        if (!~opened.indexOf(menu)) {
+            opened.push(menu);
+        }
         if (!menu) return;
         if (!menu.path) {
             menu.closed = !menu.closed;
@@ -72,6 +77,21 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
         setActive(menu, true);
         result.load(menu);
         result.active = menu;
+    };
+    result.close = function (menu) {
+        if (menu === result[0]) return;
+        var index = opened.indexOf(menu);
+        if (index >= 0) {
+            opened.splice(index, 1);
+        }
+        if (index >= opened.length) {
+            index = opened.length - 1;
+        }
+        if (opened.length > 0) {
+            result.open(opened[index]);
+        } else {
+            result.open(result[0]);
+        }
     };
     result.reload = function () {
         result.load(result.active);

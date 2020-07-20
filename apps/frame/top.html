@@ -11,6 +11,14 @@
     <btn class="menu-item menu-switch" ng-click="route.reload()">
         <i class="fa fa-refresh" ng-class="{'fa-pulse':data.loading_count>0}"></i>
     </btn>
+    <btn class="menu-item menu-page" ng-click=route.open(route[0]) ng-class="{'actived':route[0]===route.active}">
+        <i class="fa fa-home"></i>
+    </btn>
+    <btn class="menu-item menu-page" ng-repeat="r in route.opened" ng-if="r!==route[0]" ng-click="route.open(r)" ng-class="{'actived':r===route.active}">
+        <i ng-if="r.icon" class="fa" ng-class="r.icon"></i>
+        <span ng-if="!r.icon" ng-bind="r.name"></span>
+        <close ng-click="route.close(r),event.stopPropagation();"></close>
+    </btn>
     <btn class="menu-item" @title="option.name" ng-click="open(option)" ng-repeat="option in options" pop>
         <i class="fa" ng-class="option.icon"></i>
         <span class="badge" ng-if="option.tip" ng-bind="option.tip"></span>

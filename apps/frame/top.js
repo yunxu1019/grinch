@@ -1,6 +1,6 @@
 var page = div();
 page.innerHTML = top;
-render(page, {
+renderWithDefaults(page, {
     btn: button,
     user,
     data,
@@ -14,6 +14,9 @@ render(page, {
                 });
             }
         });
+    },
+    home() {
+        zimoli.go(route[0])
     },
     logout() {
         user.Logout();
