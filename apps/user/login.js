@@ -56,5 +56,6 @@ window._page2 = page;
 var [_username, _password, _loginBtn] = page.children;
 
 function main(args) {
+    // drag.on(page);
     return page;
 }

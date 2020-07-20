@@ -1,3 +1,19 @@
-<btn ng-click="logout()">
-    退出
-</btn>
+<div>
+
+    <div>
+        用户名：<span ng-bind="user.name"></span>
+    </div>
+    <div>
+        头像：<image ng-src="user.avatar"></image>
+    </div>
+    <btn ng-click="logout()">
+        退出
+    </btn>
+</div>
+<div class="profiles">
+    <padding>
+        <block>
+            <div class="bg"></div>
+        </block>
+    </padding>
+</div>

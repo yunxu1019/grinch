@@ -2,9 +2,10 @@ login();
 function main() {
     var page = div();
     page.innerHTML = setting;
-    render(page, {
-        btn: button,
+    var profiles=[user];
+    renderWithDefaults(page, {
         user,
+        profiles,
         logout() {
             user.Logout().then(function () {
                 page.$reload();
