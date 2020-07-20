@@ -6,7 +6,7 @@ var extraTypes = [];
  * 类设计器
  */
 function main(item = {
-    name,
+    name: '',
     properties: [],
     methods: []
 }) {
