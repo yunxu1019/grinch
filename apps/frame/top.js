@@ -4,6 +4,7 @@ renderWithDefaults(page, {
     btn: button,
     user,
     data,
+    xbox: vbox,
     options: data.getInstance("option-buttons"),
 
     open(option) {
