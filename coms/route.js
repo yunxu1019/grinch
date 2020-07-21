@@ -1,6 +1,5 @@
 data.fromURL('config/menus.json').loading_promise.then(function (items) {
     var result = [];
-    var opened = [];
     var menuid = 0;
     var savedChildren = {};
     var getChildren = function (menu) {
@@ -18,7 +17,7 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
     items.map(getChildren);
     result.update = function () {
         var historys = zimoli.getCurrentHistory();
-        var map = {};
+        var map = {}, mmap = {};
         historys.forEach((a, i) => map[a] = i + 1);
         result.splice(0, result.length);
         var actived, actived_value = 0;
@@ -31,11 +30,14 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
                         actived = menu;
                         actived_value = map[menu.path];
                     }
+                    mmap[menu.id] = menu;
                 }
             }
             return res;
         };
         result.push.apply(result, items.filter(a));
+        var opened = data.getInstance("menu-opened").map(a => mmap[a]).filter(a => !!a);
+        result.opened = opened;
         var active = result.active;
         if (!active || result.indexOf(active) < 0) {
             if (actived) {
@@ -47,7 +49,6 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
             }
         }
     };
-    result.opened = opened;
     var setActive = function (p, active) {
         while (p) {
             p.active = active;
@@ -68,8 +69,12 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
             return;
         }
         if (menu === result.active) return;
+        var opened = result.opened || [];
         if (!~opened.indexOf(menu)) {
             opened.push(menu);
+            data.setInstance('menu-opened', opened.map(a => a.id));
+
+            console.log(data.getInstance('menu-opened'))
         }
         if (result.active) {
             setActive(result.active, false);
@@ -97,5 +102,6 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
         result.load(result.active);
     };
     result.update();
+
     return result;
 });
