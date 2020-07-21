@@ -62,14 +62,14 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
         data.setInstance("option-buttons", zimoli.options || [], false);
     });
     result.open = function (menu) {
-        if (menu === result.active) return;
-        if (!~opened.indexOf(menu)) {
-            opened.push(menu);
-        }
         if (!menu) return;
         if (!menu.path) {
             menu.closed = !menu.closed;
             return;
+        }
+        if (menu === result.active) return;
+        if (!~opened.indexOf(menu)) {
+            opened.push(menu);
         }
         if (result.active) {
             setActive(result.active, false);
