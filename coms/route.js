@@ -85,6 +85,7 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
     };
     result.close = function (menu) {
         if (menu === result[0]) return;
+        var opened = result.opened;
         var index = opened.indexOf(menu);
         if (index >= 0) {
             opened.splice(index, 1);
