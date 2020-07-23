@@ -38,17 +38,14 @@ function main(argitem) {
             });
         },
         load() {
-            var xhr = cross("post", `http://efront.cc:5989/${argitem.type}/_find`).send({
+            scope.items = data.from("load-list", {
                 "selector": {
                     parentId: this.parentId,
                 },
                 skip: 0,
+                type: argitem.type,
                 limit: 21,
                 "sort": [{ [argitem.sort ? argitem.sort : 'date']: "desc" }]
-            }).done(function (xhr) {
-                var items = JSON.parse(xhr.responseText).docs;
-                scope.items = items;
-                render.digest();
             });
         },
         grinch() {
