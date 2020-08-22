@@ -10,7 +10,7 @@
         "search-hot": "get                                api/v3/search/hot?format=json&plat=0&count=30",
         "singer-class": "get:[].singer-class-list>li      singer/class#href=a!href&name=a|innerText&children=a!href:singer-list",
         "singer-list": "get:[].singer-img-list>li         singer/list/:id#href=a!href&src=img!_src&name=p|innerText&children=a!href:singer-info",
-        "singer-info": "mget:[].singer-songs-list>li       singer/info/:id#name=.song-name|innerText&singer=.singer-name&id=!id",
+        "singer-info": "mget:[].singer-songs-list>li      singer/info/:id#name=.song-name|innerText&singer=.singer-name&id=!id",
         "search?keyword": "get                            api/v3/search/song?format=json&page=1&pagesize=30&showtype=1"
     },
     "http://efront.cc:5989/": {

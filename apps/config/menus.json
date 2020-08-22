@@ -24,7 +24,7 @@
         "children": [
             {
                 "path": "/page/grap",
-                "name": "search",
+                "name": "资源列表",
                 "data": {
                     "type": "catalog"
                 }

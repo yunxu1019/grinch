@@ -1,7 +1,18 @@
-<input ng-model=api.method placeholder="地址">
-<input ng-model=api.url placeholder="地址">
-<button ng-click=search()>搜索</button>
-<textarea ng-model="api.result"></textarea>
-<list ng-src="item in results">
-    <result></result>
-</list>
+<div class="address">
+    <input ng-model="address" />
+    <btn ng-click="load()">加载</btn>
+</div>
+<lattice ng-if="!editpage" ng-src="req in requests">
+    <padding>
+        <block>
+            <div class="bg"></div>
+            <div class="name" v-bind=req.name||req.id></div>
+            <a class="url" v-bind=req.url></a>
+        </block>
+    </padding>
+</lattice>
+<textarea ng-if="editpage" ng-model=datas contenteditable="true">
+</textarea><div class="options" ng-if="requests.is_loaded">
+    <btn ng-click="edit()" ng-if="!editpage">编辑</btn>
+    <btn ng-click="close()" ng-if="editpage">关闭</btn>
+</div>
