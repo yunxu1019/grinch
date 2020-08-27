@@ -4,7 +4,7 @@ function main(params) {
     renderWithDefaults(page, {
         button,
         requests: [],
-        address: '/config/api.json',
+        address: 'config/api.json',
         editpage: false,
         datas: [],
         indexes: null,
