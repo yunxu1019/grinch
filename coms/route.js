@@ -93,10 +93,12 @@ data.fromURL('config/menus.json').loading_promise.then(function (items) {
         if (index >= opened.length) {
             index = opened.length - 1;
         }
-        if (opened.length > 0) {
-            result.open(opened[index]);
-        } else {
-            result.open(result[0]);
+        if (menu.active) {
+            if (opened.length > 0) {
+                result.open(opened[index]);
+            } else {
+                result.open(result[0]);
+            }
         }
     };
     result.reload = function () {
