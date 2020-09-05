@@ -26,7 +26,7 @@ function main(argitem) {
         edit(item) {
             action({
                 modal: {
-                    path: '/page/edit',
+                    path: '#/page/edit',
                     fields_ref: "config/fields/site.json",
                     actionId: 'update-site',
                     item
