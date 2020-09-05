@@ -18,6 +18,8 @@
         "add-db": "put :db_name",
         "del-db": "delete :db_name",
         "db-info": "get :name",
+        "del-item": "delete :type/:_id?rev",
+        "add-item": "put :type/:_id",
         "add-site": "put grinch/:_id",
         "load-list": "post:docs :type/_find",
         "update-site": "put grinch/:_id",

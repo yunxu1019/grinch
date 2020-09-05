@@ -8,8 +8,8 @@ renderWithDefaults(page, {
     xbox: vbox,
     options: data.getInstance("option-buttons"),
 
-    open(option) {
-        action(option).then(function (page) {
+    open(option, params) {
+        action(option, null, params).then(function (page) {
             if (isNode(page)) {
                 on("submitted")(page, function () {
                     route.reload();

@@ -66,13 +66,17 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             }
             this.remove.ing = true;
             var item = this.data;
-            api("delete", `/grinch/${item._id}?rev=${item._rev}`).success(() => {
+            console.log(item);
+            data.from("del-item", {
+                _id: item._id,
+                rev: item._rev,
+                type: params.type
+            }).loading_promise.then(() => {
                 alert("删除成功！");
                 dispatch(page, "submitted");
                 this.close();
-            }).error(() => {
+            }, () => {
                 this.remove.ing = false;
-                alert("删除失败！", "error");
                 render.refresh();
             });
         },
@@ -169,7 +173,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
     });
     resize.on(page);
     drag.on(page.children[0], page);
-    Promise.resolve(page.$scope .fields.loading_promise).then(function () {
+    Promise.resolve(page.$scope.fields.loading_promise).then(function () {
         move.setPosition(page, [.5, .5]);
     });
     return page;

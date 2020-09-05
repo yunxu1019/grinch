@@ -28,10 +28,9 @@ function main(argitem) {
                 modal: {
                     path: '#/page/edit',
                     fields_ref: "config/fields/site.json",
-                    actionId: 'update-site',
-                    item
+                    actionId: 'update-site'
                 }
-            }).then(function (page) {
+            }, item, argitem).then(function (page) {
                 on("submitted")(page, function () {
                     scope.load();
                 });

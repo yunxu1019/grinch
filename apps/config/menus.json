@@ -37,7 +37,18 @@
         "path": "/page/grinch",
         "data": {
             "type": "catalog"
-        }
+        },
+        "options": [
+            {
+                "icon": "fa-plus",
+                "name": "添加",
+                "modal": {
+                    "path": "#/page/edit",
+                    "actionId": "add-item",
+                    "fields_ref": "./config/fields/item.json"
+                }
+            }
+        ]
     },
     {
         "name": "音乐",
