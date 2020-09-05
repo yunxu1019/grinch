@@ -5,7 +5,8 @@ render(page, {
     btn: button,
     go,
     user,
-    menus: route,
+    menus: frame$route,
+
 });
 function main() {
     return page;

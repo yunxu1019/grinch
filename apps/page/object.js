@@ -1,3 +1,4 @@
+var route = frame$route;
 
 function main(args) {
     if (!args) return;

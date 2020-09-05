@@ -1,3 +1,4 @@
+var route = frame$route;
 var page = div();
 page.innerHTML = top;
 renderWithDefaults(page, {
