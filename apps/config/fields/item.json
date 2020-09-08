@@ -1,8 +1,8 @@
 [
     "key        name         type",
-    "+_id*      ID           text",
-    "+name*     名称      text",
-    "+author    作者         text",
-    "+icon      图标         text",
+    "+_id*      ID           input",
+    "+name*     名称          input",
+    "+author    作者          input",
+    "+icon      图标          input",
     "+date      修改日期      date"
 ]

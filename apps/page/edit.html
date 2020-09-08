@@ -8,7 +8,7 @@
 <div class="head" ng-if="!isedit">
     详情
 </div>
-<div class="body">
+<div class="body" elementid="body">
     <!-- <field>
         <div>ID</div>
         <div><input ng-model=data._id _disabled="!isedit"></div>
@@ -37,6 +37,7 @@
         <div><input disabled ng-model="data.date" type=date /></div>
     </field> -->
 </div>
+<yscroll></yscroll>
 <div class="foot" ng-if="isedit">
     <btn ng-if=save.ing>正在保存</btn>
     <btn ng-if=!save.ing ng-click="save()" disabled.=!valid>确定</btn>

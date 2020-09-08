@@ -1,6 +1,6 @@
 [
     "key       name     type",
-    "*name     名称     text",
-    "*key      键名     text",
-    "type      类型     text"
+    "*name     名称     input",
+    "*key      键名     input",
+    "type      类型     input"
 ]

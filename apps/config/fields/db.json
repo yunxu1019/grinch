@@ -1,9 +1,9 @@
 [
     "key             name        type",
-    "+db_name*       数据库      text",
+    "+db_name*       数据库      input",
     "+data_size$     数据大小    size",
     "+disk_size$     占用空间    size",
-    "+doc_count$     记录数      text",
+    "+doc_count$     记录数      input",
     {
         "name": "操作",
         "key": "!",

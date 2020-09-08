@@ -55,6 +55,30 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             return fields;
         }),
         getIcon,
+        yscroll() {
+            var s = scrollbar('y');
+            var body = this.body;
+            once('append')(body, lazy(() => {
+                s.bindTarget(body);
+                css(s, {
+                    right: "6px",
+                    top: 0,
+                    bottom: 0,
+                    background: "transparent",
+                    zIndex: 1,
+                    width: '4px',
+                    height: 'auto'
+                });
+                css(s.children[0], {
+                    opacity: .7
+                });
+                var a = on("resize")(page, function () {
+                    s.reshape();
+                });
+                on("remove")(s, a);
+            }));
+            return s;
+        },
         remove() {
             if (!this.remove.confirm) {
                 this.remove.confirm = true;
