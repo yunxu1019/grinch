@@ -1,7 +1,7 @@
 <div class="head" ng-if="isedit">
     <span ng-if="!title">
-        <span ng-if="data._id">编辑</span>
-        <span ng-if="!data._id">添加</span>
+        <span ng-if="data._rev">编辑</span>
+        <span ng-if="!data._rev">添加</span>
     </span>
     <span ng-if="title" ng-bind=title></span>
 </div>

@@ -26,21 +26,26 @@
     width: auto;
     background: #fff;
     background: linear-gradient(90deg, #fff0, #fff 10px);
+    background-clip: border-box;
     z-index: 1;
-    padding-right: 12px;
-    right: -12px;
-
+    right: 0;
+    padding-left: 10px;
+    margin-left: -10px;
+    box-sizing: border-box;
 }
 
 >.menu-items {
     overflow: hidden;
-    padding-left: 2px;
-    padding-right: 12px;
+    padding-left: 12px;
     max-width: 100%;
     box-sizing: border-box;
 }
 
 .menu-item {
+    &:last-child {
+        margin-right: 12px;
+    }
+
     &.menu-switch {
         background-color: #F2B33F;
     }
@@ -62,7 +67,7 @@
     height : 36px;
     line-height : 37px;
     text-align : center;
-    margin-left : 10px;
+    margin-right : 10px;
     overflow : visible;
 
     >close {
