@@ -36,6 +36,10 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             }
         });
     }];
+    resize.on(page);
+    drag.on(page.children[0], page);
+    drag.on(page.children[1], page);
+
     render(page, {
         field,
         btn: button,
@@ -195,8 +199,6 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         },
         data: extend({ _id: user.name + ":" + (+new Date), date: +new Date }, item)
     });
-    resize.on(page);
-    drag.on(page.children[0], page);
     Promise.resolve(page.$scope.fields.loading_promise).then(function () {
         move.setPosition(page, [.5, .5]);
     });
