@@ -5,5 +5,6 @@
     "+url*      首页链接      input",
     "+author    作者         input",
     "+icon      图标         input",
+    "+desc      描述         input",
     "+date      修改日期      date"
 ]

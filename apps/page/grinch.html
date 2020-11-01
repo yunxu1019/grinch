@@ -7,8 +7,9 @@
             </div>
             <img class="icon" ng-src="getIcon(item)" />
             <span class="name" ng-bind="item.name"></span>
+            <span class="desc" ng-bind="item.desc"></span>
             <span class="time" ng-bind="filterTime(item.date)"></span>
-            <hr/>
+            <hr />
             <a ng-click="event.stopPropagation();" target="blank" _title="'打开'+item.name" _href="item.url">
                 <span ng-bind="item.url"></span>
             </a>
