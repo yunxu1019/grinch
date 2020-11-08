@@ -8,7 +8,7 @@ function main(argitem) {
         user,
         filterTime,
         btn: button,
-        list: lattice,
+        list: gallery,
         getIcon,
         alert,
         beian: /efront\.cc(\:\d+)?$/i.test(location.host) ? beian : null,
