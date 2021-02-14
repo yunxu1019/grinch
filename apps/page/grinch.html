@@ -6,9 +6,9 @@
             <div class="before">
             </div>
             <img class="icon" ng-src="getIcon(item)" />
-            <span class="name" ng-bind="item.name"></span>
-            <span class="desc" ng-bind="item.desc"></span>
-            <span class="time" ng-bind="filterTime(item.date)"></span>
+            <marker class="name" _source="item.name" _search=searchText></marker>
+            <marker class="desc" _source="item.desc" _search=searchText></marker>
+            <marker class="time" _source="filterTime(item.date)" _search=searchText></marker>
             <hr />
             <a ng-click="event.stopPropagation();" target="blank" _title="'打开'+item.name" _href="item.url">
                 <span ng-bind="item.url"></span>

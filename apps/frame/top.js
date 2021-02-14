@@ -6,6 +6,11 @@ renderWithDefaults(page, {
     user,
     data,
     xbox: vbox,
+    searchbox,
+    render,
+    search(params) {
+        data.setInstance("search-text", params);
+    },
     options: data.getInstance("option-buttons"),
 
     open(option, params) {

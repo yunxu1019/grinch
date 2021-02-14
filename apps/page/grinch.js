@@ -1,4 +1,11 @@
 
+var currentScope = null;
+data.bindInstance("search-text", function (text) {
+    if (currentScope) {
+        currentScope.searchText = text || undefined;
+        currentScope.load();
+    }
+});
 function main(argitem) {
     var passport = encode62.timeencode(encode62.decode62(user._passport, user.session));
     var page = div();
@@ -14,6 +21,8 @@ function main(argitem) {
         beian: /efront\.cc(\:\d+)?$/i.test(location.host) ? beian : null,
         parentId: undefined,
         a: button,
+        marker,
+        searchText: undefined,
         encode(src) {
             return "http://efront.cc/@/data/xiaohua/photos" + src.replace(/\.?[^\.]+$/, function (m) {
                 passport = encode62.timeupdate(passport);
@@ -37,15 +46,18 @@ function main(argitem) {
             });
         },
         load() {
-            scope.items = data.from("load-list", {
+            scope.items = data.lazyInstance("load-list", {
                 "selector": {
                     parentId: this.parentId,
+                    name: this.searchText ? {
+                        $regex: this.searchText
+                    } : undefined
                 },
                 skip: 0,
                 type: argitem.type,
                 limit: 21,
                 "sort": [{ [argitem.sort ? argitem.sort : 'date']: "desc" }]
-            });
+            }, 60);
         },
         grinch() {
             return queue.call(this.items, function (item) {
@@ -64,7 +76,12 @@ function main(argitem) {
             });
         },
     }).$scope;
-
     scope.load();
+    onremove(page, function () {
+        currentScope = null;
+    });
+    onappend(page, function () {
+        currentScope = scope;
+    });
     return page;
 }
