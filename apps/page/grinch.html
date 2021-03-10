@@ -10,7 +10,7 @@
             <marker class="desc" _source="item.desc" _search=searchText></marker>
             <marker class="time" _source="filterTime(item.date)" _search=searchText></marker>
             <hr />
-            <a ng-click="event.stopPropagation();" target="blank" _title="'打开'+item.name" _href="item.url">
+            <a ng-click="event.stopPropagation();" target="_blank" _title="'打开'+item.name" _href="item.url">
                 <span ng-bind="item.url"></span>
             </a>
         </itemelem>
