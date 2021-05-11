@@ -18,24 +18,23 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         item.author = user.name;
     }
     page.renders = [function () {
-        setTimeout(e => {
-            var fields = this.querySelectorAll("field");
-            var valid = page.$scope.valid;
-            for (var cx = 0, dx = fields.length; cx < dx; cx++) {
-                var field = fields[cx];
-                var m = field.querySelector("model");
-                if (m && m.valid === false) {
-                    valid = false;
-                    break;
-                }
+        var fields = this.querySelectorAll("field");
+        var valid = page.$scope.valid;
+        for (var cx = 0, dx = fields.length; cx < dx; cx++) {
+            var field = fields[cx];
+            var m = field.querySelector("model");
+            if (m && m.valid === false) {
+                valid = false;
+                break;
             }
-            if (cx === dx) valid = true;
-            if (valid !== page.$scope.valid) {
-                page.$scope.valid = valid;
-                render.refresh();
-            }
-        });
+        }
+        if (cx === dx) valid = true;
+        if (valid !== page.$scope.valid) {
+            page.$scope.valid = valid;
+            render.refresh();
+        }
     }];
+
     resize.on(page);
     drag.on(page.children[0], page);
     drag.on(page.children[1], page);
@@ -200,7 +199,9 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         data: extend({ _id: user.name + ":" + (+new Date), date: +new Date }, item)
     });
     Promise.resolve(page.$scope.fields.loading_promise).then(function () {
-        move.setPosition(page, [.5, .5]);
+        setTimeout(function () {
+            move.setPosition(page, [.5, .5]);
+        },20);
     });
     return page;
 }
