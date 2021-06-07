@@ -157,5 +157,12 @@
             "data_ref": "config/fields/object.json",
             "fields_ref": "./config/fields/object.json"
         }
+    },
+    {
+        "name": "设置",
+        "icon": "fa fa-setting",
+        "roles": [],
+        "id": "setting",
+        "path": "/user/setting"
     }
 ]
