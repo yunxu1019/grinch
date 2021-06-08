@@ -20,12 +20,6 @@
         <span ng-if="!r.icon" ng-bind="r.name"></span>
         <close ng-click="route.close(r),event.stopPropagation();"></close>
     </btn>
-    <div insert ng-if="!user.isLogin">
-        <btn class="menu-item" title="登录" ng-click="login()">
-            <i class="fa fa-user"></i>
-            <span class="badeg"></span>
-        </btn>
-    </div>
     <div insert ng-if="user.isLogin">
         <btn class="menu-item" @title="option.name" ng-click="open(option,route.active.data)"
             ng-repeat="option in options" pop>

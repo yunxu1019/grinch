@@ -9,6 +9,7 @@ render(page, {
         elem.innerHTML = avatar;
         return elem;
     },
+    popup,
     menus: frame$route,
 
 });

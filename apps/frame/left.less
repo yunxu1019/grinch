@@ -1,15 +1,9 @@
 & {
     padding: 50px 0 0 0;
     position: relative;
+    border-bottom: 40px solid transparent;
 }
 
-.setting {
-    &[actived] {
-        border-left-color: #3c8dbc;
-    }
-
-    border-left:3px solid transparent;
-}
 
 .navbar-header {
     height: 50px;
@@ -24,10 +18,12 @@
 .dashboard_text {
     font-size: 12px;
     text-transform: capitalize;
-    display: block;
     letter-spacing: 1px;
-    padding-left: 35px;
-    display: none;
+    cursor: pointer;
+
+    &:active {
+        border-bottom: 1px solid;
+    }
 }
 
 
@@ -100,6 +96,8 @@
     text-align: left;
     line-height: 40px;
     height: 40px;
+    z-index: 1;
+    margin-bottom: -40px;
 
     i {
         height: 40px;
@@ -108,5 +106,11 @@
         line-height: inherit;
     }
 
-    padding: 0 16px
+    padding: 0 16px;
+
+    &[actived] {
+        border-left-color: #3c8dbc;
+    }
+
+    border-left:3px solid transparent;
 }
