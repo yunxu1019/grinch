@@ -1,6 +1,7 @@
 [
     "key        name         type",
     "+_id*      ID           input",
+    "+_rev*     版本          input",
     "+name*     名称          input",
     "+author    作者          input",
     "+icon      图标          input",

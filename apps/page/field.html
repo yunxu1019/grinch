@@ -1,10 +1,18 @@
-<div>
-    设计字段
+<div class="head">
+    设计类型
 </div>
-<div>
+<div class="body">
+    <field>
+        <div>
+            <label>类型名</label>
+        </div>
+        <div>
+            <input />
+        </div>
+    </field>
     <design></design>
 </div>
-<div>
-    <btn>确定</btn>
-    <btn>取消</btn>
+<div class="foot">
+    <btn @click="submit()">确定</btn>
+    <btn @click=remove() type="white">取消</btn>
 </div>

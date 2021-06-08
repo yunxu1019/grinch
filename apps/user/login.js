@@ -14,7 +14,7 @@ function main(args) {
         field,
         pswd: password,
         button,
-        username: user.name || "guest",
+        username: user.name || "",
         password: "",
         request(name, password) {
             var that = this;

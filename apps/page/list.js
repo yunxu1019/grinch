@@ -15,7 +15,7 @@ function main(args) {
                 edit_ref,
                 fields_ref,
             } = args;
-            popup("#/page/edit", {
+            popup("#/page/field", {
                 actionId: edit_ref,
                 fields_ref,
                 item
@@ -24,6 +24,5 @@ function main(args) {
         padding,
         items: data.from(args.data_ref, params)
     })
-    console.log(list, args, page.$scope);
     return page;
 }
