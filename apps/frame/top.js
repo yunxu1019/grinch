@@ -14,7 +14,6 @@ renderWithDefaults(page, {
     login() {
         zimoli.prepare("/user/login", function () {
             var page = popup("#/user/login");
-            drag.on(page);
             on('submitted')(page, function () {
                 remove(this);
             })

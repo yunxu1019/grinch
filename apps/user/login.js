@@ -6,6 +6,7 @@ function main(args) {
     page.renders = [function () {
         if (user.isLogin) this.$reload();
     }];
+    page.dragHandle = page.firstChild;
     render(page, {
         go,
         user,

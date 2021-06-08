@@ -4,6 +4,7 @@ function main(args) {
     if (!args) return;
     var { data_ref, fields_ref, action: action1, roles } = args;
     if (!data_ref || !fields_ref) throw new Error('参数不正确!');
+    console.log(data_ref)
     var page = div();
     page.innerHTML = object;
     once("append")(page, function () {
