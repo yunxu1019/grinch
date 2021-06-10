@@ -7,7 +7,7 @@ function main(args) {
     }
     render(page, {
         lattice,
-        item: listitem,
+        item,
         params,
         popup,
         edit(item) {
