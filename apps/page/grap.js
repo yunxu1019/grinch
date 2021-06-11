@@ -9,7 +9,6 @@ function main(params) {
         datas: [],
         indexes: null,
         load() {
-            console.log(this)
             this.requests = data.from(this.address, a => {
                 this.datas = JSON.stringify(a, null, 4);
                 return this.parse(a);
