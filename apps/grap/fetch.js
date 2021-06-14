@@ -1,3 +1,4 @@
+var fields = data.from("/grap/fetch.yml", parseFields);
 function main(req) {
     var f = view();
     f.dragHandle = f.firstChild;
@@ -18,9 +19,11 @@ function main(req) {
             return div();
         },
         req,
-        fields: data.from("/grap/fetch.yml", parseFields)
+        fields,
     });
-    console.log(req)
+    once("append")(f, lazy(function () {
+        move.setPosition(f, [.5, .5]);
+    }));
 
     return f;
 }
