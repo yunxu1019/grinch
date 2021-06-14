@@ -1,0 +1,15 @@
+<div class="head">
+    <div>
+        <span ng-bind="req.id"></span>
+       &nbsp;- 打开夜的窗
+    </div>
+    <close @click="destroy()"></close>
+</div>
+<div class="body">
+    <lattice ng-src="f in fields">
+        <padding>
+            <field ng-src=[f,req]></field>
+        </padding>
+    </lattice>
+</div>
+<div class="foot"></div>

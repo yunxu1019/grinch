@@ -6,13 +6,19 @@
     <padding>
         <block>
             <div class="bg"></div>
-            <div class="name" v-bind=req.name||req.id></div>
-            <a class="url" v-bind=req.url></a>
+            <div class="name">
+                <span class="method" v-bind="req.method.replace(/\\:[\\s\\S]*$/,'')"
+                    ng-style="{background:color(this.innerText)}"></span>
+                <span v-bind=req.name||req.id>
+                </span>
+            </div>
+            <a class="url" @click=run(req) v-bind=req.url></a>
         </block>
     </padding>
 </lattice>
 <textarea ng-if="editpage" ng-model=datas contenteditable="true">
-</textarea><div class="options" ng-if="requests.is_loaded">
+</textarea>
+<div class="options" ng-if="requests.is_loaded">
     <btn ng-click="edit()" ng-if="!editpage">编辑</btn>
     <btn ng-click="close()" ng-if="editpage">关闭</btn>
 </div>

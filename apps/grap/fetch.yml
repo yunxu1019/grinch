@@ -1,0 +1,5 @@
+- key name type options
+- method 请求方法 select [get,post,put,head,options,delete]
+- url 网络路径 input 4096
+- selector 数据索引 input 200
+- map 映射 reflect
