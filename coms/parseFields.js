@@ -29,6 +29,15 @@ var parseFields = function (data) {
             var is_required = /^\*|\*$/.test(res.key);
             var delete_onempty = /^\?|\?$/.test(res.key);
             var delete_onsubmit = /^\~|\~$/.test(res.key);
+            if (typeof res.options === 'string') {
+                var options = res.options;
+                if (/^\[[\s\S]*\]$|^\{[\s\S]*\}$|[\r\n]/.test(options)) {
+                    options = parseYML(options);
+                } else if (/\,/.test(options)) {
+                    options = options.split(',');
+                }
+                res.options = options;
+            }
             res.key = res.key.replace(/^[\?\~\*\!\+\-\$]|[\?\~\*\!\+\-\$]$/g, '');
             if (/^\|.*?\|$/.test(res.type)) {
                 res.text_align = 'center';
@@ -45,6 +54,7 @@ var parseFields = function (data) {
             if (delete_onempty) res.delete_onempty = true;
             if (delete_onsubmit) res.delete_onsubmit = true;
         }
+        console.log(res)
         return res;
     });
     return data;
