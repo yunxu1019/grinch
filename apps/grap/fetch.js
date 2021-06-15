@@ -1,4 +1,4 @@
-var fields = data.from("/grap/fetch.yml", parseFields);
+var fields = data.from("config/fields/grap.yml", parseFields);
 function main(req) {
     var f = view();
     f.dragHandle = f.firstChild;
