@@ -9,7 +9,7 @@
       modal:
         path: "#/page/edit"
         actionId: add-site
-        fields_ref: ./config/fields/site.json
+        fields_ref: ./config/fields/site.yml
 - icon: fa fa-retweet
   name: 数据刷
   children:
@@ -17,18 +17,18 @@
       name: 资源列表
       data:
         type: catalog
-- name: 编目管理
-  icon: fa fa-sitemap
-  path: /page/grinch
-  data:
-    type: catalog
-  options:
-    - icon: fa-plus
-      name: 添加
-      modal:
-        path: "#/page/edit"
-        actionId: add-item
-        fields_ref: ./config/fields/item.json
+# - name: 编目管理
+#   icon: fa fa-sitemap
+#   path: /page/grinch
+#   data:
+#     type: catalog
+#   options:
+#     - icon: fa-plus
+#       name: 添加
+#       modal:
+#         path: "#/page/edit"
+#         actionId: add-item
+#         fields_ref: ./config/fields/item.json
 - name: 音乐
   icon: fa fa-music
   children:
@@ -66,7 +66,7 @@
 - name: 数据库
   path: /page/object
   icon: fa fa-database
-  need:
+  roles: 
     - _admin
   data:
     action: /page/database
@@ -87,7 +87,7 @@
     edit_ref: add-item
     fields_ref: ./config/fields/item.json
     type: struct
-    selector:
+    selector: {}
   options:
     - icon: fa-plus
       name: 添加
@@ -95,12 +95,12 @@
         path: "#/page/edit"
         actionId: add-item
         fields_ref: ./config/fields/item.json
-- name: 对象库
-  icon: fa fa-cubes
-  path: /page/object
-  data:
-    data_ref: config/fields/object.json
-    fields_ref: ./config/fields/object.json
+# - name: 对象库
+#   icon: fa fa-cubes
+#   path: /page/object
+#   data:
+#     data_ref: config/fields/object.json
+#     fields_ref: ./config/fields/object.json
 - name: 设置
   icon: fa fa-setting
   roles:

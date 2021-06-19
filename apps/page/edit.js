@@ -38,19 +38,32 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
     resize.on(page);
     drag.on(page.children[0], page);
     drag.on(page.children[1], page);
-
     render(page, {
         field,
         btn: button,
         go,
         title,
         input,
-        isedit: !has_rev,
+        _isedit: !has_rev,
+        get isedit() {
+            return this._isedit;
+        },
+        set isedit(a) {
+            this._isedit = a;
+            this.keepPosition();
+        },
         has_rev,
         user,
         action,
         model,
+        item,
         valid: false,
+        keepPosition() {
+            var p = move.getPosition(page);
+            setTimeout(function () {
+                move.setPosition(page, p);
+            });
+        },
         fields: fields || data.from(fields_ref, item._id ? parseFields : function (fields) {
             fields = parseFields(fields);
             fields = has_rev ? fields : fields.filter(a => 'key' in a && !a.is_append);
@@ -169,6 +182,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                     render.refresh();
                 } else if (res.rev) {
                     $scope.data._rev = res.rev;
+                    extend($scope.item, $scope.data);
                 }
                 $scope.isedit = false;
             }).catch((e) => {
@@ -201,7 +215,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
     Promise.resolve(page.$scope.fields.loading_promise).then(function () {
         setTimeout(function () {
             move.setPosition(page, [.5, .5]);
-        },20);
+        }, 20);
     });
     return page;
 }

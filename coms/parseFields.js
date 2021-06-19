@@ -54,7 +54,6 @@ var parseFields = function (data) {
             if (delete_onempty) res.delete_onempty = true;
             if (delete_onsubmit) res.delete_onsubmit = true;
         }
-        console.log(res)
         return res;
     });
     return data;

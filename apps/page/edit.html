@@ -18,7 +18,8 @@
             <span ng-bind=f.name></span>
         </div>
         <div>
-            <model _readonly=!isedit||f.is_append||f.is_readonly _data=data _field=f></model>
+            <model readonly ng-if=!isedit||f.is_append||f.is_readonly _data=data _field=f></model>
+            <model ng-else _data=item _field=f></model>
         </div>
     </field>
     <!-- <field>

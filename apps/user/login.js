@@ -4,7 +4,10 @@ function main(args) {
     page.innerHTML = login;
     var forms = page.querySelectorAll('form');
     page.renders = [function () {
-        if (user.isLogin) this.$reload();
+        if (user.isLogin) {
+            if (this.$reload instanceof Function) this.$reload();
+            else remove(this);
+        }
     }];
     page.dragHandle = page.firstChild;
     render(page, {

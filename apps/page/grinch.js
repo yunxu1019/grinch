@@ -36,7 +36,7 @@ function main(argitem) {
             action({
                 modal: {
                     path: '#/page/edit',
-                    fields_ref: "config/fields/site.json",
+                    fields_ref: "config/fields/site.yml",
                     actionId: 'update-site'
                 }
             }, item, argitem).then(function (page) {

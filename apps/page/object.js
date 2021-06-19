@@ -54,6 +54,7 @@ function main(args) {
                 return d.map(name => data.from("db-info", { name }));
             })
         });
+        console.log(page.$scope.items);
     });
     page.roles = roles;
     return page;
