@@ -11,15 +11,21 @@ function main(args) {
         params,
         popup,
         edit(item) {
-            var {
-                edit_ref,
-                fields_ref,
-            } = args;
-            popup("#/page/field", {
-                actionId: edit_ref,
-                fields_ref,
-                item
-            });
+            zimoli.prepare("/page/edit", function () {
+                var {
+                    edit_ref,
+                    fields_ref,
+                } = args;
+                var page = popup("#/page/edit", {
+                    actionId: edit_ref,
+                    fields_ref,
+                    params: args,
+                    item
+                });
+                on("submited")(page, function () {
+                    page.$reload();
+                });
+            })
         },
         padding,
         items: data.from(args.data_ref, params)

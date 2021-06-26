@@ -1,0 +1,37 @@
+[readonly] & {
+    span {
+        cursor: default;
+        display: none;
+    }
+
+    &[empty] {
+        &:after {
+            display: none;
+        }
+    }
+}
+
+span {
+    display: inline-block;
+    margin-left: 12px;
+    color: #0092cc;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+        color: #2cf;
+    }
+
+    &:active {
+        color: #28c;
+    }
+}
+
+
+& {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: 50%;
+    background-position-x: 0;
+    width: 100%;
+}

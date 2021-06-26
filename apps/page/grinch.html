@@ -1,6 +1,6 @@
 <list ng-src="item in items" min-width=240>
-    <div class="pad">
-        <itemelem class="item" ng-click="user.isLogin&& edit(item)" ng-style="{'background-image':'url(\''+encode(item.href)+'\')'}">
+    <padding class="pad">
+        <itemelem class="item" ng-click="edit(item)" ng-style="{'background-image':'url(\''+encode(item.href)+'\')'}">
             <div class="after">
             </div>
             <div class="before">
@@ -14,6 +14,6 @@
                 <span ng-bind="item.url"></span>
             </a>
         </itemelem>
-    </div>
+    </padding>
 </list>
 <beian></beian>

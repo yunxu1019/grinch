@@ -1,0 +1,23 @@
+& {
+    display: block;
+    border-bottom: 1px solid #000;
+    background: #fff;
+
+    >.tab {
+        display: inline-block;
+        margin-left: 16px;
+        border: 1px solid #000;
+        margin-bottom: -1px;
+        border-bottom-color: transparent;
+        padding: 10px 16px;
+
+        &.active {
+            background: inherit;
+        }
+    }
+
+
+    >.tab:not(.active) {
+        border-color: transparent;
+    }
+}

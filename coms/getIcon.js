@@ -1,9 +1,9 @@
-var reg = /^(https?\:|\/\/)/i;
-function getIcon(item) {
-    if (!item.icon) return;
-    if (reg.test(item.icon)) return item.icon;
-    if (!reg.test(item.url)) return item.icon;
-    if (/^\//.test(item.icon))
-        return item.url.replace(/^((?:https?\:)?(?:\/\/)?[^\/]+)[\s\S]*$/i, "$1") + item.icon;
-    return item.url.replace(/[\?\#][\s\S]*$/, "").replace(/^((?:https?\:)?(?:\/\/)?[^\/]+[\s\S]*?)\/?[^\/]*$/, (_, a) => a + '/' + item.icon);
+var reg = /^(\w+\:|\/\/)/i;
+function getIcon(item, key = 'icon') {
+    if (!item[key]) return;
+    if (reg.test(item[key])) return item[key];
+    if (!reg.test(item.url)) return item[key];
+    if (/^\//.test(item[key]))
+        return item.url.replace(/^((?:https?\:)?(?:\/\/)?[^\/]+)[\s\S]*$/i, "$1") + item[key];
+    return item.url.replace(/[\?\#][\s\S]*$/, "").replace(/^((?:https?\:)?(?:\/\/)?[^\/]+[\s\S]*?)\/?[^\/]*$/, (_, a) => a + '/' + item[key]);
 }

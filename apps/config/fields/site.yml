@@ -3,6 +3,6 @@
 - +name*     站点名称      input
 - +url*      首页链接      url
 - +author    作者         input
-- +icon      图标         file
+- +icon      图标         icon
 - +desc      描述         text
 - date$      修改日期      date

@@ -1,5 +1,5 @@
 var route = frame$route;
-var page = div();
+var page = document.createElement("孤灯提单刀_漂泊我自傲_随心江湖江_问天何时尽");
 page.innerHTML = top;
 renderWithDefaults(page, {
     btn: button,
