@@ -1,5 +1,4 @@
 
-login();
 function checkField(data, field) {
     delete field.errored;
     if (field.is_required && isEmpty(data[field.key])) {
@@ -7,8 +6,19 @@ function checkField(data, field) {
     }
     return !!field.errored;
 }
+
+function uploadDistinct(file) {
+    var xhr = new XMLHttpRequest;
+    xhr.open("put", `/@/data/` + file.name);
+    xhr.send(file);
+}
+
+model.setModels({
+    icon: iconholder,
+});
+
 function main({ fields_ref, fields, item, params, actionId, title }) {
-    var page = view();
+    var page = view(document.createElement("我能想到最浪漫的事_就是和你一起慢慢变老"));
     var has_rev = !!item;
     if (!item) item = Object.assign({}, params);
     var editField = false;
@@ -110,7 +120,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             data.from("del-item", {
                 _id: item._id,
                 rev: item._rev,
-                type: params.type
+                type: params && params.type
             }).loading_promise.then(() => {
                 alert("删除成功！");
                 dispatch(page, "submitted");
@@ -154,6 +164,19 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
 
             });
         },
+        login(callback) {
+            if (user.isLogin) return callback.call(this);
+            var that = this;
+            this.save.ing = true;
+            zimoli.prepare("/user/login", function () {
+                var p = popup("#/user/login");
+                that.save.ing = false;
+                on("remove")(p, function () {
+                    console.log("logined")
+                    if (user.isLogin) return callback.call(that);
+                });
+            })
+        },
         save() {
             var error_Fields = this.fields.filter(checkField);
             if (
@@ -165,6 +188,8 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
 
             this.save.ing = true;
             var params = getParams(this.data, fields);
+            if (!params._id) params._id = user.name + ":" + (+new Date);
+            params.date = +new Date;
             if (!actionId) {
                 this.close();
                 extend(item, params);
@@ -210,7 +235,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         close() {
             remove(page.mask || page);
         },
-        data: extend({ _id: user.name + ":" + (+new Date), date: +new Date }, item)
+        data: extend({ date: +new Date }, item)
     });
     Promise.resolve(page.$scope.fields.loading_promise).then(function () {
         setTimeout(function () {

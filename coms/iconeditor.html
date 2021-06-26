@@ -1,0 +1,25 @@
+<div class="head">
+    配置图标
+    <close @click="exit"></close>
+</div>
+<div class="body">
+    <tabs ng-src="menu"></tabs>
+    <div class="pz" ng-if="!menu.active">
+        <input ng-model="data[field.key]" />
+    </div>
+    <div class="pz" ng-elseif="menu.active===1">
+        <span ng-if="!Blob||!URL">暂不支持在您的浏览器上上传图片</span>
+        <span ng-elseif="url">
+            <img @click="preview" ng-src=url />
+            <br/>
+            <a @click="chooseImage">修改图片</a>
+        </span>
+        <a ng-else @click="chooseImage">添加图片</a>
+    </div>
+</div>
+<div class="foot">
+    <btn @click="checkLink" disabled_="checking" ng-if="!menu.active" type="white">
+        测试链接
+    </btn>
+    <btn @click="save">确定</btn>
+</div>
