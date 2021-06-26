@@ -13,7 +13,7 @@ function main(elem) {
         });
     });
     elem.setAttribute("empty_", "data[field.key]?null:true");
-    elem.innerHTML = `<span @click=edit ng-if="data[field.key]">修改</span><span @click=edit -else>设置</span>`;
+    elem.innerHTML = `<span ng-if="data[field.key]?.percent">正在上传 (<span ng-bind="data[field.key].percent"></span>)</span><span @click=edit ng-elseif="data[field.key]">修改</span><span @click=edit -else>设置</span>`;
 
     render(elem, {
         getIcon,

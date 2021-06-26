@@ -8,9 +8,25 @@ function checkField(data, field) {
 }
 
 function uploadDistinct(file) {
-    var xhr = new XMLHttpRequest;
-    xhr.open("put", `/@/data/` + file.name);
-    xhr.send(file);
+    var dist = `/@/data/grinch/` + file.url.replace(/^[\s\S]*?([\w\-]+)$/, "$1");
+    var promise = new Promise(function (ok, oh) {
+        var xhr = new XMLHttpRequest;
+        xhr.open("put", dist);
+        xhr.send(file);
+        xhr.onerror = oh;
+        file.percent = "0%";
+        if (xhr.upload) xhr.upload.onprogress = function (event) {
+            var { total, loaded } = event;
+            file.percent = (loaded / total * 100).toFixed(2) + "%";
+            render.refresh();
+        };
+        console.log(xhr.upload)
+        xhr.onload = function () {
+            delete file.percent;
+            ok(dist);
+        };
+    });
+    return promise;
 }
 
 model.setModels({
@@ -167,17 +183,16 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         login(callback) {
             if (user.isLogin) return callback.call(this);
             var that = this;
-            this.save.ing = true;
+            callback.ing = true;
             zimoli.prepare("/user/login", function () {
                 var p = popup("#/user/login");
-                that.save.ing = false;
                 on("remove")(p, function () {
-                    console.log("logined")
+                    callback.ing = false;
                     if (user.isLogin) return callback.call(that);
                 });
             })
         },
-        save() {
+        async save() {
             var error_Fields = this.fields.filter(checkField);
             if (
                 error_Fields.length > 0
@@ -185,8 +200,22 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                 return;
             }
             if (!this.valid) return;
+            if (!user.isLogin) return;
 
             this.save.ing = true;
+            var item = this.data;
+            for (var k in item) {
+                var f = item[k];
+                if (f instanceof window.File) {
+                    try {
+                        item[k] = await uploadDistinct(f);
+                        URL.revokeObjectURL(f.url);
+                    } catch (e) {
+                        alert(String(e));
+                        return;
+                    }
+                }
+            }
             var params = getParams(this.data, fields);
             if (!params._id) params._id = user.name + ":" + (+new Date);
             params.date = +new Date;
