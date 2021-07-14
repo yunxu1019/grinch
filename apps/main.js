@@ -19,4 +19,5 @@ link.href = "fonts/font-awesome.css";
 data.loadConfig("config/api.yml");
 document.documentElement.firstChild.appendChild(link);
 zimoli('/frame/main');
+if (/efront\.cc$/i.test(location.host)) document.body.appendChild(beian());
 // imk();
