@@ -20,7 +20,6 @@ function uploadDistinct(file) {
             file.percent = (loaded / total * 100).toFixed(2) + "%";
             render.refresh();
         };
-        console.log(xhr.upload)
         xhr.onload = function () {
             delete file.percent;
             ok(dist);
@@ -219,6 +218,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             var params = getParams(this.data, fields);
             if (!params._id) params._id = user.name + ":" + (+new Date);
             params.date = +new Date;
+            params.author = user.name;
             if (!actionId) {
                 this.close();
                 extend(item, params);
