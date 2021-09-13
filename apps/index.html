@@ -35,6 +35,7 @@
     <link rel="apple-touch-icon" href="/favicon.ico" />
     <meta name="viewport" content="initial-scale=1,minimum-scale=1,width=device-width" />
     <title>Efront</title>
+    <meta name="referer" content="origin" >
     <script deleteoncompile>
         -function (body, window) {
             body.removeChild(body.getElementsByTagName("script")[0]);
@@ -136,7 +137,7 @@
         }
     </style>
     <script>
-        cross_host = location.protocol + '//efront.cc/';
+        cross_host = location.protocol + 'efront.cc';
         if (/Trident/i.test(navigator.userAgent)) {
             var _createElement = document.createElement;
             document.createElement = function (a) {
