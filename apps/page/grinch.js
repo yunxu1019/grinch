@@ -54,19 +54,29 @@ function main(argitem) {
                 });
             });
         },
-        load() {
-            scope.items = data.lazyInstance("load-list", {
-                "selector": {
-                    parentId: this.parentId,
-                    name: this.searchText ? {
-                        $regex: this.searchText
-                    } : undefined
-                },
-                skip: 0,
-                type: argitem.type,
-                limit: 21,
-                "sort": [{ [argitem.sort ? argitem.sort : 'date']: "desc" }]
-            }, 60);
+        loadid: 0,
+        async load() {
+            var loadid = ++this.loadid;
+            var loaded = 0, pagesize = 60;
+            var limit = 60000;
+            this.items = [];
+            while (loaded === this.items.length && loadid === this.loadid && this.items.length < limit) {
+                loaded += pagesize;
+                var items = await data.lazyInstance("load-list", {
+                    "selector": {
+                        parentId: this.parentId,
+                        name: this.searchText ? {
+                            $regex: this.searchText
+                        } : undefined
+                    },
+                    skip: this.items.length,
+                    type: argitem.type,
+                    limit: pagesize,
+                    "sort": [{ [argitem.sort ? argitem.sort : 'date']: "desc" }]
+                }, 60).loading_promise;
+                await new Promise(ok => setTimeout(ok, 600));
+                this.items.push.apply(this.items, items);
+            }
         },
         grinch() {
             return queue.call(this.items, function (item) {
