@@ -74,8 +74,8 @@ function main(argitem) {
                     limit: pagesize,
                     "sort": [{ [argitem.sort ? argitem.sort : 'date']: "desc" }]
                 }, 60).loading_promise;
-                await new Promise(ok => setTimeout(ok, 600));
                 this.items.push.apply(this.items, items);
+                await new Promise(ok => setTimeout(ok, 600));
             }
         },
         grinch() {
