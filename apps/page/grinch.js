@@ -62,7 +62,7 @@ function main(argitem) {
             this.items = [];
             while (loaded === this.items.length && loadid === this.loadid && this.items.length < limit) {
                 loaded += pagesize;
-                var items = await data.lazyInstance("load-list", {
+                var items = await data.asyncInstance("load-list", {
                     "selector": {
                         parentId: this.parentId,
                         name: this.searchText ? {
