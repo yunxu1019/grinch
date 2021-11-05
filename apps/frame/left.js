@@ -11,7 +11,9 @@ render(page, {
     menus: frame$route,
 
 });
+on("append")(page,function(){
+    frame$route.open();
+});
 function main() {
-    console.log(avatar);
     return page;
 }
