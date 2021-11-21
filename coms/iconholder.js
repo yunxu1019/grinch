@@ -20,6 +20,7 @@ function main(elem) {
         data,
         edit() {
             var editer = iconeditor(data, field);
+            editer.initialStyle = "transform:scale(.9);opacity:0;transition:transfrom .2s,opacity .1s"
             popup(editer);
             drag.on(editer.firstChild, editer);
             move.setPosition(editer, [.5, .5]);
