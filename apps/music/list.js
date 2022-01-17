@@ -1,7 +1,7 @@
 function main(params) {
     var page = vbox();
     page.innerHTML = list;
-    var song = data.asyncInstance(params.api instanceof Array ? params.api[0] : params.api);
+    var song = data.asyncInstance(params.api instanceof Array ? params.api[0] : params.api, null, kugou$parseSongsList);
     render(page, {
         lattice,
         items: song,
@@ -16,10 +16,11 @@ function main(params) {
                     render.refresh();
                 });
                 page.$scope.items = item.children instanceof Array
-                    ? item.children
-                    : data.asyncInstance(item.children);
-            } else if (item.id) {
-                kugou$player.play(item.id.replace(/^songs\_/i, ''));
+                ? item.children
+                : data.asyncInstance(item.children, null, kugou$parseSongsList);
+            } else if (item.hash) {
+                console.log(item)
+                kugou$player.play(item.hash);
             }
         }
     })

@@ -1,17 +1,18 @@
 http://m.kugou.com/:
   song-info:    get                               app/i/getSongInfo.php?cmd=playInfo&from=mkugou&hash
   slider-src:   get:[].mod-slider>.swipe-wrap>div .#src=img!src&href=a!href
-  songs-list:   get:[].panel-songslist>li         .#id=!id&.panel-songs-item-name>span|innerText
-  rank-list:    get:[].panel-img-list>li          rank/list#href=a!href&src=img!_src&name=p|innerText&children=a!href:rank-info
-  rank-info:    get:[].panel-songslist>li         rank/info/:id#name=.panel-songs-item-name|innerText&id=!id
-  plist-index:  get:[].panel-img-list>li          plist/index#href=a!href&src=img!_src&name=p|innerText&count=.panel-img-content-sub|innerText&children=a!href:plist-list
-  plist-list:   get:[].panel-songslist>li         plist/list/:id#name=.panel-songs-item-name|innerText&id=!id
+  songs-list:   get:[].panel-songslist%20li         .#id=!id&.panel-songs-item-name>span|innerText
+  rank-list:    get:[].panel-img-list%20li          rank/list#href=a!href&src=img!_src&name=p|innerText&children=a!href:rank-info
+  rank-info:    get:[].panel-songslist%20li         rank/info/:id#name=.panel-songs-item-name|innerText&id=!id
+  plist-index:  get:[].panel-img-list%20li          plist/index#href=a!href&src=img!_src&name=p|innerText&count=.panel-img-content-sub|innerText&children=a!href:plist-list
+  plist-list:   get:[].panel-songslist%20li         plist/list/:id#name=.panel-songs-item-name|innerText&id=!id
   search-hot:   get                               api/v3/search/hot?format=json&plat=0&count=30
-  singer-class: get:[].singer-class-list>li       singer/class#href=a!href&name=a|innerText&children=a!href:singer-list
-  singer-list:  get:[].singer-img-list>li         singer/list/:id#href=a!href&src=img!_src&name=p|innerText&children=a!href:singer-info
-  singer-info:  mget:[].singer-songs-list>li      singer/info/:id#name=.song-name|innerText&singer=.singer-name&id=!id
+  singer-class: get:[].bd%20li                    singer/class#href=a!href&children=a!href:singer-list&name=a|innerText&group=?parentNode
+  singer-list:  get:[].singer-img-list>li         singer/list/:id#href=a!href&children=a!href:singer-info0\singer-info&imgurl=img!_src&name=p|innerText
+  singer-info0: mget:[].singer-songs-list>li      singer/info/:id#hash=!id&singer=.singer-name|innerText&name=.song-name|innerText&data=em/innerText
   search:       get                               api/v3/search/song?format=json&page=1&pagesize=30&showtype=1
-
+https://www.kugou.com/:
+  singer-info:  cget:link[rel]+script       yy/singer/home/:id.html
 http://efront.cc:5989/:
   all-dbs:     get                               _all_dbs
   add-db:      put                               :db_name
