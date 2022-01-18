@@ -18,8 +18,9 @@ function main(params) {
                 page.$scope.items = item.children instanceof Array
                     ? item.children
                     : data.asyncInstance(item.children, null, kugou$parseSongsList);
-            } else if (item.id || item.hash) {
-                kugou$player.play(item.id || item.hash);
+            } else {
+                var hash = item.hash || item.id.replace(/^songs\_/i, '');
+                kugou$player.play(hash);
             }
         }
     })
