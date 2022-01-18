@@ -8,7 +8,7 @@ function stringifyRequests(reqlist) {
     }
     mesize += 2;
     for (var r of reqlist) {
-        var url = parseURL(r.url);
+        var url = parseURL(r.base + r.url);
         var host = url.protocol + "//" + url.host + "/";
         if (!serverlist[host]) {
             serverlist[host] = {};
