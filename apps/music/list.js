@@ -16,11 +16,10 @@ function main(params) {
                     render.refresh();
                 });
                 page.$scope.items = item.children instanceof Array
-                ? item.children
-                : data.asyncInstance(item.children, null, kugou$parseSongsList);
-            } else if (item.hash) {
-                console.log(item)
-                kugou$player.play(item.hash);
+                    ? item.children
+                    : data.asyncInstance(item.children, null, kugou$parseSongsList);
+            } else if (item.id || item.hash) {
+                kugou$player.play(item.id || item.hash);
             }
         }
     })
