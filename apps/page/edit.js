@@ -241,7 +241,6 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                 $scope.isedit = false;
             }).catch((e) => {
                 this.save.ing = false;
-                alert(String(e.reason), 'error');
             });
             // api("put", `/grinch/${item._id}`, item).success(() => {
             //     alert("保存成功");
