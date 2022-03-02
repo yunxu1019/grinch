@@ -58,6 +58,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             page.$scope.valid = valid;
             render.refresh();
         }
+        if (this.scrollbar) this.scrollbar.reshape();
     }];
 
     resize.on(page);
@@ -100,23 +101,19 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             var s = scrollbar('y');
             var body = this.body;
             once('append')(body, lazy(() => {
-                s.bindTarget(body);
+                s.bindTarget(body, page);
                 css(s, {
                     right: "6px",
                     top: 0,
                     bottom: 0,
                     background: "transparent",
-                    zIndex: 1,
-                    width: '4px',
+                    zIndex: 2,
                     height: 'auto'
                 });
                 css(s.children[0], {
                     opacity: .7
                 });
-                var a = on("resize")(page, function () {
-                    s.reshape();
-                });
-                on("remove")(s, a);
+                page.scrollbar = s;
             }));
             return s;
         },
