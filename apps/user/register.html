@@ -1,0 +1,15 @@
+<div head>
+    <span -if="index===0">注册新用户</span>
+    <span -elseif="index===1">设置密码</span>
+    <span -else>完成</span>
+</div>
+<div body>
+    <field -repeat="s in steps[index]" ng-src="[s,data]"></field>
+</div>
+<div foot>
+    <btn v-if="index!==0&&index+1!==steps.length" @click="index--" type="white" style="float:left">上一步</btn>
+    <btn v-if="index+1&lt;steps.length" @click="remove()" type="white">取消</btn>
+    <button type="submit" v-if="index+2&lt;steps.length" @click="index++">下一步</button>
+    <button type="submit" v-else-if="index+2===steps.length" @click="register()">注册</button>
+    <btn v-else @click="remove()">确定</btn>
+</div>

@@ -1,4 +1,4 @@
-http://m.kugou.com/:
+https://m.kugou.com/:
   song-info:    get                               app/i/getSongInfo.php?cmd=playInfo&from=mkugou&hash
   slider-src:   get:[].mod-slider>.swipe-wrap>div .#src=img!src&href=a!href
   songs-list:   get:[].panel-songslist%20li         .#id=!id&.panel-songs-item-name>span|innerText
@@ -24,3 +24,7 @@ http://efront.cc:5989/:
   load-list:   post:docs                         :type/_find
   update-site: put                               grinch/:_id
   all-docs:    get                               :db_name/_all_docs?include_docs=true
+  session:     xget                              _session
+./:
+  login:       xget                              api/login
+  register:    xget                              api/register?:params

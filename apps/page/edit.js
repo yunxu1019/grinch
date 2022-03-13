@@ -33,12 +33,13 @@ model.setModels({
 });
 
 function main({ fields_ref, fields, item, params, actionId, title }) {
-    var page = view(document.createElement("我能想到最浪漫的事_就是和你一起慢慢变老"));
+    var page = document.createElement("我能想到最浪漫的事_就是和你一起慢慢变老");
+    page.innerHTML = edit;
+    page = view(page);
     var has_rev = !!item;
     if (!item) item = Object.assign({}, params);
     var editField = false;
 
-    page.innerHTML = edit;
     if (!item._rev) {
         item.author = user.name;
     }

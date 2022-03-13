@@ -2,20 +2,11 @@
     登录
 </div>
 <div class="body" ng-submit="login()">
-    <field>
-        <div>用户名</div>
-        <div><input ng-model=username /></div>
-    </field>
-    <field>
-        <div>密码</div>
-        <div>
-            <pswd ng-model=password></pswd>
-        </div>
-    </field>
+    <field -repeat="f in fields" -src="[f,data]"></field>
 </div>
 <div class="foot">
-    <button @click="login()" type="submit" ng-if='!login.ing'>
-        登录</button>
+    <a @click="popup('#/user/register')" ng-if='!login.ing'>注册新用户</a>
+    <btn type="white" ng-click='event.preventDefault(),close()'>取消</btn>
+    <button @click="login()" type="submit" ng-if='!login.ing'>登录</button>
     <button ng-if='login.ing' class='busy'>登录中</button>
-    <button type="white" ng-click='event.preventDefault(),close()'>取消</button>
 </div>
