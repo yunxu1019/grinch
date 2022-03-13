@@ -1,19 +1,9 @@
-<div>
-
-    <div>
-        用户名：<span ng-bind="user.name"></span>
-    </div>
-    <div>
-        头像：<image ng-src="user.avatar"></image>
-    </div>
-    <btn ng-click="logout()">
-        退出
-    </btn>
+<div head>
+    设置
 </div>
-<div class="profiles">
-    <padding>
-        <block>
-            <div class="bg"></div>
-        </block>
-    </padding>
+<div body>
+    <field @change="change(f)" -repeat="f in fields" -src="[f,setting]"></field>
+</div>
+<div foot>
+    <btn @click="remove()">完成</btn>
 </div>

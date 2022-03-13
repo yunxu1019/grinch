@@ -1,3 +1,12 @@
-<field ng-repeat="f in fields" ng-src=[f,user]>
-
-</field>
+<div head>用户信息</div>
+<div body>
+    <field readonly ng-repeat="f in fields" ng-src=[f,user]></field>
+</div>
+<div foot>
+    <btn ng-click="remove()" white>
+        取消
+    </btn>
+    <btn ng-click="logout()">
+        退出登录
+    </btn>
+</div>

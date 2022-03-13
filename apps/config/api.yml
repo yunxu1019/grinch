@@ -14,17 +14,18 @@ https://m.kugou.com/:
 https://www.kugou.com/:
   singer-info:  cget:link[rel]+script       yy/singer/home/:id.html
 http://efront.cc:5989/:
-  all-dbs:     get                               _all_dbs
-  add-db:      put                               :db_name
-  del-db:      delete                            :db_name
-  db-info:     get                               :name#data_size=sizes.active&disk_size=sizes.file
-  del-item:    delete                            :type/:_id?rev
-  add-item:    put                               :type/:_id
-  add-site:    put                               grinch/:_id
-  load-list:   post:docs                         :type/_find
-  update-site: put                               grinch/:_id
-  all-docs:    get                               :db_name/_all_docs?include_docs=true
+  all-dbs:     xget                               _all_dbs
+  add-db:      xput                               :db_name
+  del-db:      xdelete                            :db_name
+  db-info:     xget                               :name#data_size=sizes.active&disk_size=sizes.file
+  del-item:    xdelete                            :type/:_id?rev
+  add-item:    xput                               :type/:_id
+  add-site:    xput                               grinch/:_id
+  load-list:   xpost:docs                         :type/_find
+  update-site: xput                               grinch/:_id
+  all-docs:    xget                               :db_name/_all_docs?include_docs=true
   session:     xget                              _session
+  logout:      xdelete                           _session
 ./:
   login:       xget                              api/login
   register:    xget                              api/register?:params

@@ -106,4 +106,4 @@
   roles:
     - hidden
   id: setting
-  path: /user/setting
+  path: "#/user/setting"
