@@ -6,7 +6,7 @@ function main(req) {
     resize.on(f);
     f.innerHTML = template;
     req = extend({}, req, {
-        method: req.method.replace(/\:[\s\S]*$/, '').replace(/^[mc]/, ''),
+        method: req.method.replace(/\:[\s\S]*$/, '').replace(/^[夏商姐周秦xszqmc]|^[gbk][^e]/, ''),
         selector: req.method.replace(/^[^\:]*\:?/, ''),
         url: req.url.replace(/#[\s\S]*$/, ''),
         map: req.url.replace(/^[^#]+/, '').slice(1)
