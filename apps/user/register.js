@@ -40,7 +40,7 @@ function main() {
                 return;
             }
             var { username, password } = this.data;
-            await data.from("register", { params: encode62.timeencode(serialize({ username, password })) });
+            await data.from("register", { username, password });
             this.index++;
         },
         remove() {
