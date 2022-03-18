@@ -1,5 +1,4 @@
-var page = div();
-page.innerHTML = grap;
+
 function stringifyRequests(reqlist) {
     var serverlist = {};
     var mesize = 0, mesize = 0;
@@ -19,6 +18,8 @@ function stringifyRequests(reqlist) {
     return YAML.stringify(serverlist);
 }
 function main(params) {
+    var page = div();
+    page.innerHTML = grap;
     renderWithDefaults(page, {
         button,
         requests: [],
