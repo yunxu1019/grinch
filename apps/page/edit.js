@@ -87,7 +87,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         valid: false,
         keepPosition() {
             var p = move.getPosition(page);
-            setTimeout(function () {
+            requestAnimationFrame(function () {
                 move.setPosition(page, p);
             });
         },
