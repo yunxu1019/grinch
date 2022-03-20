@@ -17,7 +17,7 @@ var steps = [
 function main() {
     var page = view();
     page.innerHTML = template;
-
+    autofocus(page);
     page.setAttribute("ng-src", "[steps[index],data]");
     renderWithDefaults(page, {
         steps,
@@ -46,9 +46,6 @@ function main() {
         remove() {
             remove(page);
         }
-    });
-    on('mounted')(page, function () {
-        page.querySelector("input").focus();
     });
     drag.on(page.firstChild, page);
     resize.on(page);

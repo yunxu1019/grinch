@@ -7,6 +7,5 @@
 <div class="foot">
     <a @click="popup('#/user/register')" ng-if='!login.ing'>注册新用户</a>
     <btn type="white" ng-click='event.preventDefault(),close()'>取消</btn>
-    <button type="submit" ng-if='!login.ing'>登录</button>
-    <button ng-if='login.ing' class='busy'>登录中</button>
+    <button type="submit" @click="login()">登录</button>
 </div>

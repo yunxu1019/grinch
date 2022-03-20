@@ -8,6 +8,7 @@ function main(args) {
             else remove(this);
         }
     }];
+    autofocus(page);
     page.dragHandle = page.firstChild;
     renderWithDefaults(page, {
         go,
@@ -41,19 +42,6 @@ function main(args) {
         close() {
             history.back();
         }
-    });
-
-
-    on("submit")(page, function (e) {
-        e.preventDefault();
-    });
-    on("keydown")(page, function (e) {
-        if (e.which === 13) {
-            this.$scope.login();
-        }
-    });
-    on('mounted')(page, function () {
-        page.querySelector("input").focus();
     });
     window._page2 = page;
     var [_username, _password, _loginBtn] = page.children;
