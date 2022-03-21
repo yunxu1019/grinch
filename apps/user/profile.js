@@ -15,15 +15,14 @@ function main() {
         fields,
         async logout() {
             await data.from("logout");
-            user.Logout().then(function () {
+            return user.Logout().then(function () {
                 page.$reload();
             });
         },
-        remove(){
+        remove() {
             remove(page);
         }
     });
-    console.log(page.$scope)
     drag.on(page, page.firstChild);
     resize.on(page);
     return page;
