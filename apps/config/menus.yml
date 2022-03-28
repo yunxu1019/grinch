@@ -1,4 +1,4 @@
-- name: 助推站点
+- name: 网络导航
   path: /page/grinch
   icon: fa fa-link
   data:
@@ -95,12 +95,6 @@
         path: "#/page/edit"
         actionId: add-item
         fields_ref: ./config/fields/item.json
-# - name: 对象库
-#   icon: fa fa-cubes
-#   path: /page/object
-#   data:
-#     data_ref: config/fields/object.json
-#     fields_ref: ./config/fields/object.json
 - name: 设置
   icon: fa fa-setting
   roles:
