@@ -30,20 +30,20 @@ function main(data, field) {
         data,
         field,
         checking: false,
-        checkLink() {
+        async checkLink() {
             this.checking = true;
             var url = getIcon(data, field.key);
-            cross("get", url).done(() => {
+            try {
+                await cross("get", url);
                 alert("连接成功！", "info");
-                this.checking = false;
-            }, () => {
+            } catch (e) {
                 alert("链接无法使用", "error");
-                this.checking = false;
-            });
+            }
+            this.checking = false;
         },
         chooseImage() {
             var scope = this;
-            chooseFile("image/*").then(function ([file]) {
+            return chooseFile("image/*").then(function ([file]) {
                 if (file.size > 200 * 1024) {
                     alert("您的图像超过200KB，暂不支持使用", "error");
                     return;
