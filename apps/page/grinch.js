@@ -37,8 +37,8 @@ function main(argitem) {
         },
         padding(elem) {
             var e = document.createElement(article[elem.$scope.$index % article.length]);
-            render(e, elem.$scope, elem.$parentScopes);
             appendChild(e, [].slice.call(elem.children));
+            render(e, elem.$scope, elem.$parentScopes, false);
             return e;
         },
         edit(item) {
@@ -75,6 +75,7 @@ function main(argitem) {
                     "sort": [{ [argitem.sort ? argitem.sort : 'date']: "desc" }]
                 }, 60).loading_promise;
                 if (loadid !== this.loadid) break;
+                console.log(items)
                 this.items.push.apply(this.items, items);
                 await new Promise(ok => setTimeout(ok, 600));
             }

@@ -1,16 +1,18 @@
 <list ng-src="item in items" min-width=240>
     <padding class="pad">
-        <itemelem class="item" ng-click="edit(item)" ng-style="item.href?{'background-image':'url(\''+encode(item.href||'')+'\')'}:null">
-            <div class="after">
+        <img draggable="false" @click="window.open(item.url)" class="lead" v-if="item.image" -src="getIcon(item,'image')"></div>
+        <itemelem class="item" ng-click="edit(item)">
+            <div class="after" v-if="!item.image">
             </div>
-            <div class="before">
+            <div class="before" v-if="!item.image">
             </div>
-            <img class="icon" ng-src="getIcon(item)" />
+            <img draggable="false" class="icon" ng-src="getIcon(item)" />
             <marker class="name" _source="item.name" _search=searchText></marker>
             <marker class="desc" _source="item.desc" _search=searchText></marker>
             <marker class="time" _source="filterTime(item.date)" _search=searchText></marker>
             <hr />
-            <a @mousedown=event.preventDefault() ng-click="event.stopPropagation();" target="_blank" _title="'打开'+item.name" _href="item.url">
+            <a draggable="false" @mousedown=event.preventDefault() ng-click="event.stopPropagation();" target="_blank"
+                _title="'打开'+item.name" _href="item.url">
                 <span ng-bind="item.url"></span>
             </a>
         </itemelem>

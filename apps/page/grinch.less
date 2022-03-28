@@ -1,3 +1,38 @@
+.lead {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    user-select: none;
+    transform: rotateX(-10deg) rotateZ(-10deg) rotateY(10deg) translateX(-10px);
+
+    &:hover {
+        filter: invert(.75);
+    }
+
+    &:hover+.item {
+        >a {
+            color: #f28;
+        }
+    }
+
+    &+.item {
+        background: #fffe;
+        position: static;
+        transform: rotateX(-10deg) rotateZ(-10deg) rotateY(10deg) translateX(20px) translateY(-30px);
+        margin-top: -30px;
+        >.name {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 1.8;
+        }
+        >.desc{
+            font-size: 22px;
+            font-family: 仿宋;
+            font-weight: 900;
+        }
+    }
+}
+
 .item {
     border: 1px solid #0002;
     background: #fff9;
@@ -99,6 +134,7 @@
 }
 
 .pad {
+    perspective: 1000px;
     box-sizing: border-box;
     display: block;
     position: relative;
@@ -127,7 +163,7 @@ bar {
 & {
     position: relative;
     height: 100%;
-    padding: 0!important;
+    padding: 0 !important;
 }
 
 list {
