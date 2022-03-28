@@ -263,6 +263,9 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         },
         data: extend({ date: +new Date }, item)
     });
+    page.onback = function () {
+        if (this.$scope.isedit) return false;
+    };
     Promise.resolve(page.$scope.fields.loading_promise).then(function () {
         setTimeout(function () {
             move.setPosition(page, [.5, .5]);
