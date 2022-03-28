@@ -30,10 +30,12 @@ function main(args) {
             var { username, password } = submit(this.fields, this.data);
             var result = await data.from("login", { name: username, password });
             var api = await data.getApi('login');
-            await user.Login(result).then(() => {
+            await user.Login(result).then(async () => {
                 this.password = "";
                 user.setSessionTime(60 * 60 * 1000 * 7 * 24);
                 var session = cross.getCookies(api.base);
+                var item = await data.getApi('session');
+                cookie.linkCookie(api.base, item.base);
                 user._passport = encode62.encode62(password, session);
                 user.saveSession(session);
                 dispatch(page, 'submitted');
