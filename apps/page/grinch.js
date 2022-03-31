@@ -34,9 +34,9 @@ function main(argitem) {
         async pay(item) {
             var p = frame$payment([
                 {
-                    url: 'http://efront.cc/pay/alipay:',
+                    url: '//efront.cc/pay/alipay:',
                     name: '支付宝',
-                    icon: 'http://efront.cc/pay/alipay.ico',
+                    icon: '//efront.cc/pay/alipay.ico',
                     cost(price) {
                         return BigNumber.prd((0.6036218 + 0.204081632) / 100, price);
                     },
