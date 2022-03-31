@@ -11,7 +11,9 @@
             <marker class="desc" _source="item.desc" _search=searchText></marker>
             <marker class="time" _source="filterTime(item.date)" _search=searchText></marker>
             <hr />
-            <a draggable="false" @mousedown=event.preventDefault() ng-click="event.stopPropagation();" target="_blank"
+            <a -if="item.cprice>0" -click="event.stopPropagation(),pay(item)">付费并访问</a>
+            <a -elseif="item.fprice>0" -click="event.stopPropagation()" _href="item.url" target="_blank" _title="'打开'+item.name">限时免费</a>
+            <a -else draggable="false" @mousedown=event.preventDefault() ng-click="event.stopPropagation();" target="_blank"
                 _title="'打开'+item.name" _href="item.url">
                 <span ng-bind="item.url"></span>
             </a>

@@ -12,6 +12,8 @@ data.bindInstance("search-text", function (text) {
         currentScope.load();
     }
 });
+var fields = data.from("config/fields/site.yml", parseFields);
+prepare("/page/edit");
 function main(argitem) {
     var passport = encode62.timeencode(encode62.decode62(user._passport, user.session));
     var page = document.createElement("垂死病中惊坐起_暗风吹雨入寒窗");
@@ -29,6 +31,24 @@ function main(argitem) {
         a: button,
         marker,
         searchText: undefined,
+        async pay(item) {
+            var p = frame$payment([
+                {
+                    url: 'http://efront.cc/pay/alipay:',
+                    name: '支付宝',
+                    icon: 'http://efront.cc/pay/alipay.ico',
+                    cost(price) {
+                        return BigNumber.prd((0.6036218 + 0.204081632) / 100, price);
+                    },
+                },
+            ], item.cprice);
+            var w = popup(p, true);
+            move.setPosition(p, [.5, .5]);
+            w.on('payment', function () {
+                window.open(item.url);
+                remove(p);
+            });
+        },
         encode(src) {
             return "http://efront.cc/@/data/xiaohua/photos" + src.replace(/\.?[^\.]+$/, function (m) {
                 passport = encode62.timeupdate(passport);
@@ -41,10 +61,14 @@ function main(argitem) {
             render(e, elem.$scope, elem.$parentScopes, false);
             return e;
         },
-        edit(item) {
+        async edit(item) {
+            var fs = fields.slice();
+            if (!item) fs = fs.filter(f => 'key' in f && !f.readonly);
+            fs = fs.filter(f => f.inform !== false);
             action({
                 modal: {
                     path: '#/page/edit',
+                    fields: fs,
                     fields_ref: "config/fields/site.yml",
                     actionId: 'update-site'
                 }

@@ -11,6 +11,9 @@ https://m.kugou.com/:
   singer-list:  get:[].singer-img-list>li         singer/list/:id#href=a!href&children=a!href:singer-info0\singer-info&imgurl=img!_src&name=p|innerText
   singer-info0: mget:[].singer-songs-list>li      singer/info/:id#hash=!id&singer=.singer-name|innerText&name=.song-name|innerText&data=em/innerText
   search:       get                               api/v3/search/song?format=json&page=1&pagesize=30&showtype=1
+https://apiv2.pinduoduo.com/: 
+  search-goods?keyword&page_info&sort_type: post api/jade/asics/search/goods_list # page_info:{current:1,page_size:10}
+
 https://www.kugou.com/:
   singer-info:  cget:link[rel]+script       yy/singer/home/:id.html
 http://efront.cc:5989/:

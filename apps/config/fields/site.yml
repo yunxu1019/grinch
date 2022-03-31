@@ -5,5 +5,7 @@
 - author$    作者         input
 - +icon      图标         icon
 - image      引导图       icon
+- fprice     原价         price
+- cprice     现价         price
 - +desc      描述         text
 - date$      修改日期      date
