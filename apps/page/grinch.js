@@ -42,9 +42,9 @@ function main(argitem) {
                     },
                 },
             ], item.cprice);
-            var w = popup(p, true);
+            popup(p, true);
             move.setPosition(p, [.5, .5]);
-            w.on('payment', function () {
+            care(p, 'payment', function () {
                 window.open(item.url);
                 remove(p);
             });
@@ -65,6 +65,10 @@ function main(argitem) {
             var fs = fields.slice();
             if (!item) fs = fs.filter(f => 'key' in f && !f.readonly);
             fs = fs.filter(f => f.inform !== false);
+            item = Object.assign({}, item);
+            if (item.cprice > 0 || item.fprice > 0) {
+                if (item.author !== user.name) delete item.url;
+            }
             action({
                 modal: {
                     path: '#/page/edit',

@@ -9,26 +9,8 @@
     详情
 </div>
 <div class="body" elementid="body">
-    <!-- <field>
-        <div>ID</div>
-        <div><input ng-model=data._id _disabled="!isedit"></div>
-    </field> -->
-    <field ng-repeat="f in fields" -src="[f,data]"></field>
-    <!-- <field>
-        <div>地址</div>
-        <div><input ng-model=data.url _disabled="!isedit"></div>
-    </field>
-    <field class="icon">
-        <div>图标</div>
-        <div><input ng-model="data.icon" _disabled="!isedit" /></div>
-        <div>
-            <img ng-src="getIcon(data)" />
-        </div>
-    </field>
-    <field>
-        <div>创建时间</div>
-        <div><input disabled ng-model="data.date" type=date /></div>
-    </field> -->
+    <field -if="!isedit" ng-repeat="f in fields" readonly -src="[f,data]"></field>
+    <field -else ng-repeat="f in fields" -src="[f,data]"></field>
 </div>
 <yscroll></yscroll>
 <div class="foot" ng-if="isedit">
