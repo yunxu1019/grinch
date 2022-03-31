@@ -15,13 +15,13 @@ function main(item) {
                 });
             });
             return Object.keys(map).map(k => {
-                var is_readonly = /^_/.test(k);
+                var readonly = /^_/.test(k);
                 return {
                     key: k,
                     name: k,
-                    is_readonly,
-                    type: is_readonly ? 'read' : 'text',
-                    is_inlist: !is_readonly
+                    readonly,
+                    type: readonly ? 'read' : 'text',
+                    inlist: !readonly
                 }
             });
         }),

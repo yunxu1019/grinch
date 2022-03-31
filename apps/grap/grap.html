@@ -18,7 +18,7 @@
 </lattice>
 <textarea ng-if="editpage" ng-model=datas contenteditable="true">
 </textarea>
-<div class="options" ng-if="requests.is_loaded">
+<div class="options" ng-if="requests.loaded">
     <btn ng-click="edit()" ng-if="!editpage">编辑</btn>
     <btn ng-click="close()" ng-if="editpage">关闭</btn>
 </div>

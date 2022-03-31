@@ -3,7 +3,7 @@
         <tr>
             <td width=60>序号</td>
             <td>id</td>
-            <td ng-repeat="i in fields" ng-if="i?.is_inlist">
+            <td ng-repeat="i in fields" ng-if="i?.inlist">
                 <span ng-bind=i.name></span>
             </td>
         </tr>
@@ -12,9 +12,9 @@
         <tr ng-repeat="(i,cx) in docs.rows" ng-click="open(i.doc)">
             <td><span ng-bind=cx+1></span></td>
             <td><span ng-bind=i.id></span></td>
-            <td ng-if="f?.is_inlist" ng-repeat="f in fields">
+            <td ng-if="f?.inlist" ng-repeat="f in fields">
                 <model _readonly=true ng-if="f?.key&&i.doc" _field=f _data=i.doc></model>
-                <button ng-if="f.options&&o&&!i.is_loading" _type=o.type ng-repeat="o in f.options"
+                <button ng-if="f.options&&o&&!i.loading" _type=o.type ng-repeat="o in f.options"
                     ng-click=event.stopPropagation(),action(o,i)>
                     <span ng-bind=o.name></span>
                 </button>

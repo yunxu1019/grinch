@@ -1,3 +1,4 @@
+
 var parseFields = function (data) {
     if (!data) return;
     var keys;
@@ -21,12 +22,12 @@ var parseFields = function (data) {
             res = string;
         }
         if (res && res.key) {
-            var is_inlist = /^[\+\!]|^[\+\!]$/.test(res.key);
-            var is_hidden = /^\-|\-$/.test(res.key);
-            var is_append = /^\$|\$$/.test(res.key);// 服务器追加的属性
-            var is_inform = !/^\!|\!$/.test(res.key);
-            var is_editable = !/^\&|\&$/.test(res.key);// 创建后不能修改的属性
-            var is_required = /^\*|\*$/.test(res.key);
+            var inlist = /^[\+\!]|^[\+\!]$/.test(res.key);
+            var hidden = /^\-|\-$/.test(res.key);
+            var append = /^\$|\$$/.test(res.key);// 服务器追加的属性
+            var inform = !/^\!|\!$/.test(res.key);
+            var editable = !/^\&|\&$/.test(res.key);// 创建后不能修改的属性
+            var required = /^\*|\*$/.test(res.key);
             var delete_onempty = /^\?|\?$/.test(res.key);
             var delete_onsubmit = /^\~|\~$/.test(res.key);
             if (typeof res.options === 'string') {
@@ -45,12 +46,12 @@ var parseFields = function (data) {
                 res.text_align = res.type[0] === "|" ? "left" : "right";
                 res.type = res.type.replace(/^\||\$/g, "");
             }
-            if (is_inlist) res.is_inlist = true;
-            if (is_hidden) res.is_hidden = true;
-            if (is_append) res.is_append = true;
-            if (!is_inform) res.is_inform = false;
-            if (is_required) res.is_required = true;
-            if (!is_editable) res.is_editable = false;
+            if (inlist) res.inlist = true;
+            if (hidden) res.hidden = true;
+            if (append) res.readonly = true;
+            if (!inform) res.inform = false;
+            if (required) res.required = true;
+            if (!editable) res.editable = false;
             if (delete_onempty) res.delete_onempty = true;
             if (delete_onsubmit) res.delete_onsubmit = true;
         }

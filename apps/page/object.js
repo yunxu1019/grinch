@@ -15,7 +15,7 @@ function main(args) {
                     if (isNode(pg)) {
                         on("submitted")(pg, e => route.reload());
                     } else if (pg instanceof Object) {
-                        if (!pg.is_errored) {
+                        if (!pg.errored) {
                             route.reload();
                         }
                     }

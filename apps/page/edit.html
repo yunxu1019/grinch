@@ -13,15 +13,7 @@
         <div>ID</div>
         <div><input ng-model=data._id _disabled="!isedit"></div>
     </field> -->
-    <field ng-repeat="f in fields">
-        <div ng-click="editField(f)">
-            <span ng-bind=f.name></span>
-        </div>
-        <div>
-            <model readonly ng-if=!isedit||f.is_append||f.is_readonly _data=data _field=f></model>
-            <model ng-else _data=data _field=f></model>
-        </div>
-    </field>
+    <field ng-repeat="f in fields" -src="[f,data]"></field>
     <!-- <field>
         <div>地址</div>
         <div><input ng-model=data.url _disabled="!isedit"></div>
@@ -41,10 +33,10 @@
 <yscroll></yscroll>
 <div class="foot" ng-if="isedit">
     <btn ng-if=save.ing>正在保存</btn>
-    <btn ng-if=!save.ing ng-click="login(save)" disabled.=!valid>确定</btn>
+    <btn ng-else ng-click="login(save)" disabled.=!valid>确定</btn>
     <btn type="white" ng-click="!has_rev?close():(isedit=false)">取消</btn>
 </div>
-<div class="foot" ng-if="!isedit">
+<div class="foot" -else>
     <btn ng-if="remove.ing" type="dark">正在删除</btn>
     <btn ng-if="!remove.ing&&has_rev" ng-click="login(remove)" type_="remove.confirm?'dark':'danger'">
         <span ng-if="remove.confirm">确认</span>删除

@@ -1,12 +1,4 @@
 
-function checkField(data, field) {
-    delete field.errored;
-    if (field.is_required && isEmpty(data[field.key])) {
-        field.errored = 'required';
-    }
-    return !!field.errored;
-}
-
 function uploadDistinct(file) {
     var dist = `/@/data/grinch/` + file.url.replace(/^[\s\S]*?([\w\-]+)$/, "$1");
     var promise = new Promise(function (ok, oh) {
@@ -93,8 +85,8 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         },
         fields: fields || data.from(fields_ref, item._id ? parseFields : function (fields) {
             fields = parseFields(fields);
-            fields = has_rev ? fields : fields.filter(a => 'key' in a && !a.is_append);
-            fields = fields.filter(a => a.is_inform !== false);
+            fields = has_rev ? fields : fields.filter(a => 'key' in a && !a.readonly);
+            fields = fields.filter(a => a.inform !== false);
             return fields;
         }),
         getIcon,
@@ -129,7 +121,6 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             }
             this.remove.ing = true;
             var item = this.data;
-            console.log(item);
             data.from("del-item", {
                 _id: item._id,
                 rev: item._rev,
@@ -177,30 +168,21 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
 
             });
         },
-        login(callback) {
-            if (user.isLogin) return callback.call(this);
+        async login(callback) {
+            var item = submit(this.fields, this.data);
+            if (user.isLogin) return callback.call(this, item);
             var that = this;
             callback.ing = true;
-            zimoli.prepare("/user/login", function () {
-                var p = popup("#/user/login");
-                on("remove")(p, function () {
-                    callback.ing = false;
-                    if (user.isLogin) return callback.call(that);
-                });
-            })
+            var p = await popup("#/user/login");
+            on("remove")(p, function () {
+                callback.ing = false;
+                render.refresh();
+                if (user.isLogin) return callback.call(that, item);
+            });
         },
-        async save() {
-            var error_Fields = this.fields.filter(checkField);
-            if (
-                error_Fields.length > 0
-            ) {
-                return;
-            }
-            if (!this.valid) return;
+        async save(item) {
             if (!user.isLogin) return;
-
             this.save.ing = true;
-            var item = this.data;
             for (var k in item) {
                 var f = item[k];
                 if (f instanceof window.File) {
@@ -226,7 +208,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             var res = data.from(actionId, params);
             res.loading_promise.then(() => {
                 this.save.ing = false;
-                if (res.is_errored) return;
+                if (res.errored) return;
                 dispatch(page, 'submitted');
                 var { $scope } = page;
                 if (!this.has_rev) {
