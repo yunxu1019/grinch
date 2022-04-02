@@ -1,6 +1,7 @@
 <list ng-src="item in items" min-width=240>
     <padding class="pad">
-        <img draggable="false" @click="window.open(item.url)" class="lead" v-if="item.image" -src="getIcon(item,'image')"></div>
+        <img draggable="false" @click="window.open(item.url)" class="lead" v-if="item.image"
+            -src="getIcon(item,'image')"></div>
         <itemelem class="item" ng-click="edit(item)">
             <div class="after" v-if="!item.image">
             </div>
@@ -11,12 +12,15 @@
             <marker class="name" _source="item.name" _search=searchText></marker>
             <marker class="desc" _source="item.desc" _search=searchText></marker>
             <hr />
-            <a -if="item.cprice>0" -click="event.stopPropagation(),pay(item)">付费并访问</a>
-            <a -elseif="item.fprice>0" -click="event.stopPropagation()" _href="item.url" target="_blank" _title="'打开'+item.name">限时免费</a>
-            <a -else draggable="false" @mousedown=event.preventDefault() ng-click="event.stopPropagation();" target="_blank"
-                _title="'打开'+item.name" _href="item.url">
+            <a -if="item.cprice>0" -click="event.stopPropagation(),pay(item)"><b class="price"
+                    v-bind="item.cprice+'元'"></b>付费并访问</a>
+            <a -elseif="item.fprice>0" -click="event.stopPropagation()" _href="item.url" target="_blank"
+                _title="'打开'+item.name">限时免费</a>
+            <a -else draggable="false" @mousedown=event.preventDefault() ng-click="event.stopPropagation();"
+                target="_blank" _title="'打开'+item.name" _href="item.url">
                 <span ng-bind="item.url"></span>
             </a>
+
         </itemelem>
     </padding>
 </list>
