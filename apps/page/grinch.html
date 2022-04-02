@@ -7,9 +7,9 @@
             <div class="before" v-if="!item.image">
             </div>
             <img draggable="false" class="icon" ng-src="getIcon(item)" />
+            <marker class="time" _source="filterTime(item.date)" _search=searchText></marker>
             <marker class="name" _source="item.name" _search=searchText></marker>
             <marker class="desc" _source="item.desc" _search=searchText></marker>
-            <marker class="time" _source="filterTime(item.date)" _search=searchText></marker>
             <hr />
             <a -if="item.cprice>0" -click="event.stopPropagation(),pay(item)">付费并访问</a>
             <a -elseif="item.fprice>0" -click="event.stopPropagation()" _href="item.url" target="_blank" _title="'打开'+item.name">限时免费</a>
