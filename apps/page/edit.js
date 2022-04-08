@@ -69,6 +69,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         },
         set isedit(a) {
             this._isedit = a;
+            extend(this.data, item);
             this.keepPosition();
         },
         has_rev,
