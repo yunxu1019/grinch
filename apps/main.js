@@ -1,6 +1,7 @@
 user.setLoginPath("/user/login");
 api.setBaseUrl("http://efront.cc:5989/", cross);
 data.loadConfig("config/api.yml");
+data.addConfig(kugou$api);
 user.loadSession().then(async function (session) {
     if (!session) return;
     var api = await data.getApi('session');

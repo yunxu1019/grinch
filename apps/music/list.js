@@ -5,7 +5,7 @@ function main(params) {
     render(page, {
         lattice,
         items: song,
-        play(item) {
+        async play(item) {
             if (item.children) {
                 var hidden = document.createElement("hidden");
                 appendChild(page, hidden);
@@ -19,6 +19,13 @@ function main(params) {
                     ? item.children
                     : data.asyncInstance(item.children, null, kugou$parseSongsList);
             } else {
+                if (!item.hash && item.hashid) {
+                    await data.from("song-mix", item, function (a) {
+                        var m = a.innerText.match(/(['"`]?)hash\1\s*:\s*(["'`])(.*?)\2/);
+                        if (m) item.hash = m[3];
+                    });
+                }
+
                 var hash = item.hash || item.id.replace(/^songs\_/i, '');
                 kugou$player.play(hash);
             }
