@@ -1,24 +1,23 @@
-<div class="address">
-    <input ng-model="address" />
-    <btn ng-click="load()">加载</btn>
+<tip class="tip">
+    <span -if="!valid" -html="info"></span>
+    <a -else @click="load(location.href)">分析</a>
+</tip>
+<div class="menubar">
+    <menu -src="m in menus" @active="activeMenu=m"></menu>
+    <select  -src="(g,i) in activeMenu?.groups" -if="activeMenu?.groups.length" -model="activeMenu.index">
+        <option value_="i"
+            -bind="'('+g.length+') '+g.name"></option>
+    </select>
 </div>
-<lattice ng-if="!editpage" ng-src="req in requests">
-    <padding>
-        <block>
-            <div class="bg"></div>
-            <div class="name">
-                <span class="method" v-bind="req.method.replace(/\\:[\\s\\S]*$/,'')"
-                    ng-style="{background:color(this.innerText)}"></span>
-                <span v-bind=req.name||req.id>
-                </span>
-            </div>
-            <a class="url" @click=run(req) v-bind=req.url></a>
-        </block>
+<lattice @click="popimg" -if="activeMenu?.tag==='img'" -src="(m,i) in activeMenu?.groups[activeMenu?.index]">
+    <padding class="item" :class="activeMenu.tag">
+        <container -src="m"></container>
     </padding>
 </lattice>
-<textarea ng-if="editpage" ng-model=datas contenteditable="true">
-</textarea>
-<div class="options" ng-if="requests.loaded">
-    <btn ng-click="edit()" ng-if="!editpage">编辑</btn>
-    <btn ng-click="close()" ng-if="editpage">关闭</btn>
-</div>
+<list @click="ophref" -else-if="activeMenu?.tag==='a'" -src="(m,i) in activeMenu?.groups[activeMenu?.index]">
+    <padding class="item" :class="activeMenu.tag">
+        <span class="grapid" -text="i+1"></span>
+        <container -src="m"></container>
+    </padding>
+</list>
+<div -else class="info">没有找到可分析的数据</div>

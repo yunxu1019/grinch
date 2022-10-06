@@ -32,11 +32,13 @@ function main(argitem) {
         marker,
         searchText: undefined,
         async pay(item) {
+            var host = '//efront.cc/';
+            // host = "https://localhost/";
             var p = frame$payment([
                 {
-                    url: '//efront.cc/pay/alipay:',
+                    url: host + 'pay/alipay:',
                     name: '支付宝',
-                    icon: '//efront.cc/pay/alipay.ico',
+                    icon: host + 'pay/alipay.ico',
                     cost(price) {
                         return BigNumber.prd((0.6036218 + 0.204081632) / 100, price);
                     },

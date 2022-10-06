@@ -1,89 +1,170 @@
 & {
-    padding-top: 90px;
-    padding-bottom: 48px;
-    height: 100%;
-    background: #fff;
-    position: relative;
-}
-
-.block {
-    padding: 4px 16px 0 16px;
-}
-
-.method {
-    display: inline-block;
-    color: #fff;
-    padding: 0 6px;
-    margin: 0 10px 0 0;
-    font-size: 8px;
-    border-radius: 3px;
-}
-
-.url {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    display: inline-block;
-    position: relative;
-}
-
-.block {
-    box-shadow: 0 0 6px -4px #fff2;
-}
-
-.address {
-    padding: 0 82px 0 12px;
-    margin-top: -48px;
-    line-height: 48px;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: -1px;
-
-    input {
-        vertical-align: middle;
-        width: 100%;
-        margin-right: 10px;
-        background: #f9f9f9;
-    }
-
-    btn {
-        vertical-align: middle;
-        width: 60px;
-        margin-right: -70px;
-    }
-}
-
-.options {
-    text-align: center;
-    line-height: 46px;
-    margin-bottom: -48px;
-    background: #fff;
-
-    btn {
-        vertical-align: middle;
-        padding: 0 16px;
-        margin-right: 10px;
-    }
-}
-
-textarea {
-    margin: 0;
-    white-space: nowrap;
-    resize: none;
+    display: block;
     width: 100%;
+    border: none;
+    height: 100%;
+    overflow: auto;
+    padding-top: 44px;
+    position: relative;
+}
+
+>.tip {
+    position: absolute;
+    padding: 7px 20px;
+    border: 1px solid transparent;
+    top: 0;
+    height: 44px;
+    line-height: 28px;
+    white-space: nowrap;
+    right: 0;
+    z-index: 3;
+    user-select: none;
+    pointer-events: none;
+
+    >.button {
+        pointer-events: all;
+    }
+
+    cursor: pointer;
+    color: #999;
+}
+
+&~.top {
+    .searchbox {
+        margin-left: -10px;
+        width: calc(~"100% - 156px");
+        padding-right: 40px;
+    }
+}
+
+>.menubar {
+    display: block;
+    padding: 0 20px;
+    background: linear-gradient(#29c6, #29c);
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    white-space: no-wrap;
+
+    >menu {
+        margin: 0 10px;
+        vertical-align: top;
+        display: inline-block;
+        border: none;
+        background: transparent;
+    }
+
+    >.select {
+        width: calc(~"100% - 220px");
+        background: #29c;
+        margin: 0;
+        border: 1px solid #fff;
+        vertical-align: top;
+        height: 32px;
+        display: inline-block;
+        color: #fff;
+    }
+
+    .button.actived {
+        background: linear-gradient(#29c6, #fff6);
+    }
+}
+
+>.list {
     display: block;
     height: 100%;
+    box-sizing: border-box;
+    margin-top: -32px;
+    padding: 46px 0 46px 0;
 }
 
-lattice {
-    background: #f2f4f6;
+>.list>padding {
+    display: block;
+    line-height: 1.5;
+
+    &.img {
+        display: inline-block;
+
+        img {
+            width: 100%;
+        }
+
+        .grapid {
+            display: none;
+        }
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    &.a {
+        padding: 0 10px;
+        display: block;
+        width: 100%;
+
+        img {
+            display: inline-block;
+            max-width: 300px;
+            max-height: 300px;
+        }
+    }
+
+    .grapid {
+        display: block;
+        float: left;
+        margin: 0 10px;
+    }
+
+    .name {
+        font-size: 18px;
+        font-weight: 400;
+        display: block;
+        font-family: "宋体", sans-serif;
+    }
+
+
+    tr {
+        display: block;
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .size {
+        text-transform: uppercase;
+    }
+
+    .date,
+    .size {
+        float: right;
+        font-size: 12px;
+        white-space: nowrap;
+        color: #999;
+        margin-left: 6px;
+    }
+
+    a {
+        margin-right: 6px;
+        text-decoration: none;
+        color: #29c;
+
+        &:hover {
+            text-decoration: underline;
+            color: #3bd;
+        }
+
+        &:active {
+            color: #169;
+        }
+    }
 }
 
-.name {
-    color: #666;
-}
-
-a {
-    font-size: 10px;
+>.info {
+    text-align: center;
+    color: #999;
+    padding: 60px 0;
 }

@@ -8,7 +8,7 @@ renderWithDefaults(page, {
     xbox: vbox,
     searchbox,
     render,
-    searchText: data.getInstance("search-text"),
+    searchText: data.getInstance("search-text") || '',
     search(params) {
         data.setInstance("search-text", params);
     },
