@@ -34,8 +34,8 @@
     <link rel="Shortcut Icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="/favicon.ico" />
     <meta name="viewport" content="initial-scale=1,minimum-scale=1,width=device-width" />
-    <title>Efront</title>
-    <meta name="referer" content="origin" >
+    <title>efront</title>
+    <meta name="referer" content="origin">
     <script efrontloader>
     </script>
     <style>
@@ -127,7 +127,7 @@
         }
     </style>
     <script>
-        cross_host = location.protocol + '//efront.cc';
+        if (!/efront\.cc$/.test(location.hostname)) cross_host = location.protocol + '//efront.cc';
         if (/Trident/i.test(navigator.userAgent)) {
             var _createElement = document.createElement;
             document.createElement = function (a) {
