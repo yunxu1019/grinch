@@ -15,6 +15,11 @@ var search = function () {
     this.searchText = this.value;
     dispatch(this, 'search');
 };
+var cancel = function () {
+    if (!this.value && !this.searchText) return;
+    this.searchText = this.value = '';
+    dispatch(this, 'search');
+};
 var emit = lazy2(search, 60);
 function searchbox() {
     var i = input();
@@ -22,6 +27,7 @@ function searchbox() {
     on("input")(i, emit);
     on("paste")(i, emit);
     on("cut")(i, emit);
-    on("keydown.enter")(i, search);
+    on("keydown.enter.only")(i, search);
+    on("keydown.esc.only")(i, cancel);
     return i;
 }
