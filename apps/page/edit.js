@@ -198,6 +198,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                 }
             }
             var params = getParams(this.data, fields);
+            if (!params._rev && this.data._rev) params._rev = this.data._rev;
             if (!params._id) params._id = user.name + ":" + (+new Date);
             params.date = +new Date;
             params.author = user.name;
@@ -208,7 +209,8 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                 return;
             }
             var res = data.from(actionId, params);
-            res.loading_promise.then(() => {
+            try {
+                await res;
                 this.save.ing = false;
                 if (res.errored) return;
                 dispatch(page, 'submitted');
@@ -221,22 +223,10 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                     extend($scope.item, $scope.data);
                 }
                 $scope.isedit = false;
-            }).catch((e) => {
+            }
+            catch {
                 this.save.ing = false;
-            });
-            // api("put", `/grinch/${item._id}`, item).success(() => {
-            //     alert("保存成功");
-            //     this.isedit = false;
-            //     this.save.ing = false;
-            //     if (!item._rev) {
-            //         this.close();
-            //     }
-            //     render.refresh();
-            // }).error(() => {
-            //     alert("保存失败！", "error");
-            //     this.save.ing = false;
-            //     render.refresh();
-            // });
+            };
         },
         getHeight() {
             var fields = this.fields;
