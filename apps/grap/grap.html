@@ -1,12 +1,11 @@
-<tip class="tip">
-    <span -if="!valid" -html="info"></span>
+<tip class="tip" -if="location?.href">
+    <span -if="!valid" -text="searchtip"></span>
     <a -else @click="load(location.href)">分析</a>
 </tip>
 <div class="menubar">
     <menu -src="m in menus" @active="activeMenu=m"></menu>
-    <select  -src="(g,i) in activeMenu?.groups" -if="activeMenu?.groups.length" -model="activeMenu.index">
-        <option value_="i"
-            -bind="'('+g.length+') '+g.name"></option>
+    <select -src="(g,i) in activeMenu?.groups" -if="activeMenu?.groups.length" -model="activeMenu.index">
+        <option value_="i" -bind="'('+g.length+') '+g.name"></option>
     </select>
 </div>
 <lattice @click="popimg" -if="activeMenu?.tag==='img'" -src="(m,i) in activeMenu?.groups[activeMenu?.index]">

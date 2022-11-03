@@ -1,6 +1,9 @@
 var route = frame$route;
 var page = document.createElement("孤灯提单刀_漂泊我自傲_随心江湖江_问天何时尽");
 page.innerHTML = top;
+bind("zimoli")(page, function ({ zimoli }) {
+    page.$scope.searchtip.placeholder = zimoli.data.searchtip || '';
+});
 renderWithDefaults(page, {
     btn: button,
     user,
@@ -46,11 +49,8 @@ renderWithDefaults(page, {
     switchMenu() {
         page.parentNode.switchLeft();
     }
-})
-var isOpend = false;
-var mouseover = function () {
-};
-page.querySelectorAll("menu-item");
+});
+
 function main() {
     return page;
 }

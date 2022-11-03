@@ -217,7 +217,7 @@ async function load() {
     this.menus[0].actived = true;
     this.activeMenu = this.menus[0];
 }
-function main() {
+function main(params) {
     var page = document.createElement("一点一横长");
     page.innerHTML = template;
     data.bindInstance(page, {
@@ -227,9 +227,9 @@ function main() {
         }
     });
     renderWithDefaults(page, {
-        info: "输入完整的网址",
         valid: false,
         menu,
+        searchtip: params.searchtip || "",
         menus: [],
         ophref,
         popimg,
