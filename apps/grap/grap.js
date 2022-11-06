@@ -258,7 +258,7 @@ function main(params) {
     });
     bind('keydown.enter')(page, function () {
         if (page.$scope.valid && document.activeElement === document.body.querySelector(".searchbox")) {
-            page.firstChild.querySelector("a").click();
+            page.firstElementChild.querySelector("a").click();
         }
     });
     onmounted(page, function () {
