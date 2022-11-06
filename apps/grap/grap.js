@@ -188,7 +188,9 @@ var menus = [{ name: "图片", tag: 'img', attr: 'src' }, { name: "链接", tag:
 async function load() {
     if (!this.valid) return;
     var href = this.location.href;
-    var res = await cross('get', this.location.href);
+    if (this.loading) this.loading.abort();
+    this.loading = cross('get', this.location.href)
+    var res = await this.loading;
     var parser = new DOMParser;
     var dom = parser.parseFromString(res.responseText, 'text/html');
     var imgs = dom.querySelectorAll("img");
