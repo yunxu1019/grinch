@@ -190,17 +190,25 @@ async function load() {
     var href = this.location.href;
     if (this.loading) this.loading.abort();
     this.loading = cross('get', this.location.href)
-    var res = await this.loading;
-    var parser = new DOMParser;
-    var dom = parser.parseFromString(res.responseText, 'text/html');
-    var imgs = dom.querySelectorAll("img");
-    var anchors = dom.querySelectorAll("a");
-    var base = parseURL(href);
-    if (!base.protocol) base.protocol = location.protocol;
-    imgs.forEach(img => setAttribute(img, 'src', base));
-    anchors.forEach(a => setAttribute(a, 'href', base));
-    menus[0].groups = toGroups(dom, imgs);
-    menus[1].groups = toGroups(dom, anchors);
+    try {
+        var res = await this.loading;
+        var parser = new DOMParser;
+        if (res.url && res.url !== href && href === this.location.href) data.setInstance('search-text', res.url);
+        var dom = parser.parseFromString(res.responseText, 'text/html');
+        var imgs = dom.querySelectorAll("img");
+        var anchors = dom.querySelectorAll("a");
+        var base = parseURL(href);
+        if (!base.protocol) base.protocol = location.protocol;
+        imgs.forEach(img => setAttribute(img, 'src', base));
+        anchors.forEach(a => setAttribute(a, 'href', base));
+        menus[0].groups = toGroups(dom, imgs);
+        menus[1].groups = toGroups(dom, anchors);
+    }
+    catch (e) {
+        menus[0].groups = [];
+        menus[1].groups = [];
+    }
+    this.loading = null;
     this.menus = menus.filter(m => m.groups.length > 0);
     if (!this.menus.length) {
         this.activeMenu = null;
