@@ -233,7 +233,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             return fromPixel((fields.length > 6 ? 6 : fields.length || 0) * 44 + 32);
         },
         close() {
-            remove(page.mask || page);
+            remove(page);
         },
         data: extend({ date: +new Date }, item)
     });
