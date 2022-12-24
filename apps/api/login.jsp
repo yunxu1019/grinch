@@ -8,7 +8,7 @@
         lock30("login-" + remoteAddress, 3);
         var xhr = await _runtask("login", name, password);
         var c = xhr.getResponseHeader("set-cookie");
-        res.writeHead(200,{"set-cookie":c})
+        res.writeHead(200, { "set-cookie": c });
         return xhr.response;
     }
     catch (e) {

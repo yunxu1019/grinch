@@ -175,7 +175,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             if (user.isLogin) return callback.call(this, item);
             var that = this;
             callback.ing = true;
-            var p = await popup("#/user/login");
+            var p = await popup("#/user/login", true);
             on("remove")(p, function () {
                 callback.ing = false;
                 render.refresh();

@@ -1,6 +1,6 @@
 <div ng-if="!user.isLogin" class="navbar-header">
     <!-- <avatar></avatar> -->
-    <a @click="popup('#/user/login')" class="dashboard_text">请登录</a>
+    <a @click="popup('#/user/login',true)" class="dashboard_text">请登录</a>
 </div>
 <div -else class="navbar-header">
     <span class="dashboard_text" @click="popup('#/user/profile')">

@@ -1,13 +1,7 @@
 
-function main(args) {
+function main(autoclose) {
     var page = view();
     page.innerHTML = login;
-    page.renders = [function () {
-        if (user.isLogin) {
-            if (this.$reload instanceof Function) this.$reload();
-            else remove(this);
-        }
-    }];
     autofocus(page);
     page.dragHandle = page.firstChild;
     renderWithDefaults(page, {
@@ -40,6 +34,8 @@ function main(args) {
                 user.saveSession(session);
                 dispatch(page, 'submitted');
             });
+            if (autoclose || !page.$reload) remove(page);
+            else page.$reload();
         },
         close() {
             history.back();
