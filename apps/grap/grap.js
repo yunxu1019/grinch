@@ -149,6 +149,7 @@ var formaturl = function (base, url) {
             }
         }
     }
+    url.locate();
     return url.href;
 }
 var setAttribute = function (img, attr, base) {
