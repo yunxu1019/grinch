@@ -33,7 +33,6 @@ function main(argitem) {
         searchText: undefined,
         async pay(item) {
             var host = '//efront.cc/';
-            // host = "https://localhost/";
             var p = frame$payment([
                 {
                     url: host + 'pay/alipay:',

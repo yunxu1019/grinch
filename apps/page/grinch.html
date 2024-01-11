@@ -1,7 +1,5 @@
 <list ng-src="item in items" min-width=260>
     <padding class="pad">
-        <img draggable="false" @click="window.open(item.url)" class="lead" v-if="item.image"
-            -src="getIcon(item,'image')"/>
         <itemelem class="item" ng-click="edit(item)">
             <div class="after" v-if="!item.image">
             </div>
@@ -20,6 +18,8 @@
                 target="_blank" _title="'打开'+item.name" _href="item.url">
                 <span ng-bind="item.url"></span>
             </a>
+            <img draggable="false" @click="window.open(item.url)" class="lead" v-if="item.image"
+                -src="getIcon(item,'image')" />
 
         </itemelem>
     </padding>

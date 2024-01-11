@@ -1,43 +1,62 @@
-.pad:hover>.lead {
-    filter: contrast(.6) brightness(1.5);
-}
-.lead {
-    width: auto;
-    height: 160px;
-    display: block;
-    user-select: none;
-    transform: rotateX(-10deg) rotateZ(-10deg) rotateY(10deg) translateX(-10px);
+// .pad:hover>.lead {
+//     filter: contrast(.6) brightness(1.5);
+// }
+// .lead {
+//     width: auto;
+//     height: 160px;
+//     display: block;
+//     user-select: none;
+//     transform: rotateX(-10deg) rotateZ(-10deg) rotateY(10deg) translateX(-10px);
 
 
-    &:hover+.item {
+//     &:hover+.item {
 
-        >a {
-            color: #f28;
-        }
-    }
+//         >a {
+//             color: #f28;
+//         }
+//     }
 
-    &+.item {
-        background: #fff;
-        position: static;
-        transform: rotateX(-10deg) rotateZ(-10deg) rotateY(10deg) translateX(20px) translateY(-30px);
-        margin-top: -40px;
-        margin-left: -10px;
+//     &+.item {
+//         background: #fff;
+//         position: static;
+//         transform: rotateX(-10deg) rotateZ(-10deg) rotateY(10deg) translateX(20px) translateY(-30px);
+//         margin-top: -40px;
+//         margin-left: -10px;
 
-        >.name {
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 1.8;
-        }
+//         >.name {
+//             font-weight: 600;
+//             font-size: 24px;
+//             line-height: 1.8;
+//         }
 
-        >.desc {
-            font-size: 18px;
-            font-family: 仿宋;
-            font-weight: 900;
-        }
-    }
-}
+//         >.desc {
+//             font-size: 18px;
+//             font-family: 仿宋;
+//             font-weight: 900;
+//         }
+//     }
+// }
 
 .item {
+    >*{
+        position: relative;
+        z-index: 1;
+    }
+    >.lead {
+        position: absolute;
+        width: 100%;
+        top: -50%;
+        right: -40px;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    >a:hover+.lead {
+        transform: scale(1.02);
+        transition: transform .3s ease;
+        z-index: 2;
+    }
+
     border: 1px solid #2299cc66;
     background: #fff9;
     border-radius: 3px;
