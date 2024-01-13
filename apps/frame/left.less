@@ -11,7 +11,6 @@
     font-size: 25px;
     line-height: 25px;
     text-transform: uppercase;
-    color: #b8c7ce;
     margin-top: -50px;
 }
 
@@ -21,7 +20,8 @@
     letter-spacing: 1px;
     cursor: pointer;
     vertical-align: top;
-    avatar{
+
+    avatar {
         margin-right: 6px;
     }
 
@@ -35,11 +35,39 @@
     }
 }
 
-
+@bg: #f6fcf9;
+@color: #1d6e38;
 
 .sidebar-menu {
     height: 100%;
     box-shadow: none;
+    background: @bg;
+
+    &>.tab1.open {
+        background: @bg;
+    }
+
+    >.tab1 {
+        background: @bg;
+        color: @color;
+
+        s:after {
+            color: #000;
+        }
+
+        &.actived {
+            color: #000;
+        }
+    }
+
+    &>.button:not(.tab1) {
+        background: @bg;
+        color: @color;
+
+        &.actived {
+            color: #000;
+        }
+    }
 }
 
 .label {
@@ -50,7 +78,6 @@
     float: right;
     top: 50%;
     padding: 0 8px;
-    color: #fff;
 
     &.label-primary {
         background-color: #cd3213;
@@ -86,13 +113,11 @@
 
 .tab1.header {
     font-size: 12px;
-    color: #4b646f;
-    background: #1a2226;
     height: 32px;
     line-height: 32px;
 
     &:hover {
-        color: #4b646f;
+        color: inherit;
     }
 }
 
@@ -118,7 +143,7 @@
     padding: 0 16px;
 
     &[actived] {
-        border-left-color: #3c8dbc;
+        // border-left-color: #3c8dbc;
     }
 
     border-left:3px solid transparent;

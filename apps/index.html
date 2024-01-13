@@ -125,6 +125,14 @@
             overflow: hidden;
             background: #fff;
         }
+
+        @media (prefers-color-scheme: dark) {
+
+            html,
+            img {
+                filter: hue-rotate(180deg) invert()
+            }
+        }
     </style>
     <script>
         if (/Trident/i.test(navigator.userAgent)) {

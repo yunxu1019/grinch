@@ -26,9 +26,3 @@ document.documentElement.firstChild.appendChild(link);
 zimoli('/frame/main');
 if (/efront\.cc$/i.test(location.host)) document.body.appendChild(beian());
 // imk();
-data.bindInstance('setting', function (setting) {
-    var filters = [];
-    if (setting.grayscale) filters.push('grayscale(1)');
-    if (setting.invert) filters.push('hue-rotate(180deg) invert(.75)');
-    css('html', 'filter:' + filters.join(' '));
-});

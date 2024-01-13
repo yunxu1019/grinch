@@ -4,6 +4,7 @@ https://apiv2.pinduoduo.com/:
 https://www.kugou.com/:
   singer-info:  cget:link[rel]+script       yy/singer/home/:id.html
 http://efront.cc:5989/:
+# http://localhost:5984/:
   all-dbs:     xget                               _all_dbs
   add-db:      xput                               :db_name
   del-db:      xdelete                            :db_name
