@@ -1,6 +1,6 @@
 <div>
     <div>
-        class <input class="type-name" ng-model=item.name /> {
+        class <input class="type-name" ng-model=item.name /> ${"{"}
     </div>
     <div ng-if=item.properties?.length>
 
@@ -31,6 +31,6 @@
         <btn class="add-prop" ng-click="addProperty()">添加</btn>
     </div>
     <div>
-        }
+        ${"}"}
     </div>
 </div>
