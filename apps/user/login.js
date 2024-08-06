@@ -31,6 +31,7 @@ function main(autoclose) {
                 var item = await data.getApi('session');
                 cookie.linkCookie(api.base, item.base);
                 user._passport = encode62.encode62(password, session);
+                user.name = username;
                 user.saveSession(session);
                 dispatch(page, 'submitted');
             });
