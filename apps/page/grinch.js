@@ -86,12 +86,12 @@ function main(argitem) {
         loadid: 0,
         async load() {
             var loadid = ++this.loadid;
-            var loaded = 0, pagesize = 60;
+            var loaded = 0, pagesize = 20;
             var limit = 60000;
             this.items = [];
             while (loaded === this.items.length && loadid === this.loadid && this.items.length < limit) {
                 loaded += pagesize;
-                var items = await data.asyncInstance("load-list", {
+                var items = await data.lazyInstance("load-list", {
                     "selector": {
                         parentId: this.parentId,
                         name: this.searchText ? {
@@ -102,9 +102,8 @@ function main(argitem) {
                     type: argitem.type,
                     limit: pagesize,
                     "sort": [{ [argitem.sort ? argitem.sort : 'date']: "desc" }]
-                }, 60).loading_promise;
+                }).loading_promise;
                 if (loadid !== this.loadid) break;
-                console.log(items)
                 this.items.push.apply(this.items, items);
                 await new Promise(ok => setTimeout(ok, 600));
             }
