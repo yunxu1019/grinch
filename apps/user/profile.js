@@ -14,7 +14,7 @@ function main() {
         user,
         fields,
         async logout() {
-            await data.from("logout");
+            // await data.from("logout");
             return user.Logout().then(function () {
                 page.$reload();
             });

@@ -75,7 +75,7 @@ function main(argitem) {
                     path: '#/page/edit',
                     fields: fs,
                     fields_ref: "config/fields/site.yml",
-                    actionId: 'update-site'
+                    actionId: 'update-item'
                 }
             }, item, argitem).then(function (page) {
                 on("submitted")(page, function () {
@@ -89,21 +89,18 @@ function main(argitem) {
             var loaded = 0, pagesize = 20;
             var limit = 60000;
             this.items = [];
+            var lastId = '';
             while (loaded === this.items.length && loadid === this.loadid && this.items.length < limit) {
                 loaded += pagesize;
-                var items = await data.lazyInstance("load-list", {
-                    "selector": {
-                        parentId: this.parentId,
-                        name: this.searchText ? {
-                            $regex: this.searchText
-                        } : undefined
-                    },
-                    skip: this.items.length,
-                    type: argitem.type,
-                    limit: pagesize,
-                    "sort": [{ [argitem.sort ? argitem.sort : 'date']: "desc" }]
-                }).loading_promise;
+                var params = {
+                    lastId,
+                    size: pagesize,
+                    searchText: this.searchText,
+                    type: argitem.type
+                };
+                var items = await data.lazyInstance("load-list", params).loading_promise;
                 if (loadid !== this.loadid) break;
+                var lastId = items[items.length - 1]?.id;
                 this.items.push.apply(this.items, items);
                 await new Promise(ok => setTimeout(ok, 600));
             }

@@ -40,7 +40,8 @@ function main() {
                 return;
             }
             var { username, password } = this.data;
-            await data.from("register", { username, password });
+            var a = encode62.geta(password);
+            await data.from("register", { name: username, a });
             this.index++;
         },
         remove() {

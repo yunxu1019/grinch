@@ -28,6 +28,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
     var page = document.createElement("我能想到最浪漫的事_就是和你一起慢慢变老");
     page.innerHTML = edit;
     page = view(page);
+    var datatype = params.type;
     var has_rev = !!item;
     if (!item) item = Object.assign({}, params);
     var editField = false;
@@ -70,7 +71,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         set isedit(a) {
             this._isedit = a;
             for (var k in this.data) delete this.data[k];
-            extend(this.data, item);
+            this.data = extend({}, this.data, item);
             this.keepPosition();
         },
         has_rev,
@@ -124,9 +125,8 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             this.remove.ing = true;
             var item = this.data;
             data.from("del-item", {
-                _id: item._id,
-                rev: item._rev,
-                type: params && params.type
+                id: item.id,
+                type: datatype
             }).loading_promise.then(() => {
                 alert("删除成功！");
                 dispatch(page, "submitted");
@@ -202,6 +202,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             if (!params._id) params._id = user.name + ":" + (+new Date);
             params.date = +new Date;
             params.author = user.name;
+            params.type = datatype;
             if (!actionId) {
                 this.close();
                 extend(item, params);
@@ -213,18 +214,19 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
                 await res;
                 this.save.ing = false;
                 if (res.errored) return;
-                dispatch(page, 'submitted');
                 var { $scope } = page;
                 if (!this.has_rev) {
                     this.close();
                     render.refresh();
-                } else if (res.rev) {
-                    $scope.data._rev = res.rev;
-                    extend($scope.item, $scope.data);
+                } else {
+                    extend($scope.item, params);
+                    if (res.rev) $scope.data._rev = res.rev;
                 }
                 $scope.isedit = false;
+                dispatch(page, 'submitted');
             }
-            catch {
+            catch (e) {
+                console.log(e)
                 this.save.ing = false;
             };
         },

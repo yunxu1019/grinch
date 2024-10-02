@@ -20,3 +20,10 @@ http://efront.cc:5989/:
 ./:
   login:       xget                              api/login
   register:    xget                              api/register?:params
+http://efront.cc/:
+  register:    xput                              /用户/
+  login:       options                           ::login-:uid:::a
+  load-list:   get                               /:type/:lastId,:size,:searchText                         :type/_find
+  del-item:    delete                            /:type/:id
+  add-item:    put                               /:type/:id
+  update-item: post                              /:type/:id

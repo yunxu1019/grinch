@@ -1,5 +1,5 @@
 - key        name         type
-- +_id$      ID           input
+- +id$      ID           input
 - +name*     站点名称      input:60
 - +url*      首页链接      url
 - author$    作者         input

@@ -22,15 +22,13 @@ function main(autoclose) {
         },
         async login() {
             var { username, password } = submit(this.fields, this.data);
-            var result = await data.from("login", { name: username, password });
+            var result = await data.from("login", { uid: username, a: encode62.timeencode(encode62.geta(password)) });
             var api = await data.getApi('login');
+            data.setSource(api.base, { authorization: result })
             await user.Login(result).then(async () => {
                 this.password = "";
                 user.setSessionTime(60 * 60 * 1000 * 7 * 24);
-                var session = cross.getCookies(api.base);
-                var item = await data.getApi('session');
-                cookie.linkCookie(api.base, item.base);
-                user._passport = encode62.encode62(password, session);
+                var session = data.getSource(api.base);
                 user.name = username;
                 user.saveSession(session);
                 dispatch(page, 'submitted');
