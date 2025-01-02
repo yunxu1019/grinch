@@ -1,0 +1,175 @@
+<style>
+    &~.top {
+        .searchbox {
+            display: none;
+        }
+    }
+
+    @left-width: 280px;
+
+    & {
+        display: block;
+        padding-top: 46px;
+        height: 100%;
+        padding-left: @left-width;
+        width: 100%;
+        white-space: nowrap;
+
+    }
+
+    &>view,
+    &>lattice {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &>lattice {
+        white-space: normal;
+        width: 100%;
+        min-width: 160px;
+    }
+
+    &>view {
+        white-space: nowrap;
+        height: 100%;
+        width: @left-width;
+        max-width: initial;
+        margin: 0 0 0 -@left-width;
+    }
+
+    .padding {
+        display: block;
+    }
+
+    [item] {
+        border: 6px solid transparent;
+        line-height: 28px;
+        display: inline-block;
+        vertical-align: top;
+
+        >span,
+        >a {
+            display: inline-block;
+            margin-right: 6px;
+            vertical-align: top;
+        }
+
+        >span {
+            font-size: 14px;
+        }
+
+
+        img {
+            width: 28px;
+            height: 28px;
+            vertical-align: top;
+            margin-right: 6px;
+        }
+
+    }
+
+    [foot]>div {
+        &:after {
+            clear: both;
+            display: block;
+            content: '';
+        }
+    }
+</style>
+<view>
+    <div head>批量抓取链接</div>
+    <div body>
+        <form>
+            <field -repeat="f in fields" -src="[f,config]"></field>
+        </form>
+    </div>
+    <div foot>
+        <div>
+            <span -if="res" style="float: left;">已加载<span -bind="res.length"></span>个 (<span
+                    -bind="run.value.join('/')"></span>)</span>
+            <template -if="state!==1&&res?.length">
+                <a @click="clean()">清理</a>
+                <button type="candidate" @click="save()">保存</button>
+            </template>
+        </div>
+        <div>
+            <button -if="state===0" @click="start">开始</button>
+            <button -elseif="state===1" class="pause" @click="pause()">暂停</button>
+            <button -elseif="state===2" class="resume" @click="resume()">继续</button>
+            <button -if="state!==0" class="danger" @click="stop()">停止</button>
+        </div>
+    </div>
+</view>
+<lattice -src="o in res" item-width="280">
+    <div item>
+        <a href@="o.link" target="_blank">
+            <img -src="o.icon" />
+            <span o.name?></span>
+        </a>
+        <span o.size?></span>
+        <span o.date?></span>
+    </div>
+</lattice>
+<script>
+    var a = button;
+    var fields = refilm`
+    网址范围/url text
+    分支路径/path  input
+    数据映射/map text
+    `;
+    var config = {
+        url: "https://www.xiazaiba.com/downlist/[1-602]_[1-100000].html",
+        path: '.cat-list>li',
+        map: `name=.title|innerText&icon=.down-img>img!src&size=.size!innerText&date=.date!innerText&desc=.desc!innerText&link=.down-load!href`.split('&').join('\r\n')
+    };
+    var state = 0, run = null, res = null;
+    var pause = function () {
+        state = 2;
+    };
+    var clean = function () {
+        res = null;
+        state = 0;
+    };
+    var stop = function () {
+        state = 0;
+    };
+    var save = function () {
+        var a = document.createElement('a');
+        var data = JSON.stringify(res, null, 4).replace(/\r\n|\r|\n/g, '\r\n');
+        var Blob = window.Blob;
+        if (!Blob) return alert('保存失败！请更换浏览器重试', 'error');
+        var b = new Blob([data], {
+            type: "application/json",
+        });
+        var u = URL.createObjectURL(b);
+        a.href = u;
+        a.download = '已抓取数据.json';
+        a.click();
+    };
+    var loaded = 0;
+    var payment = function (res) {
+        if (res.length >= 200 || loaded >= 20) {
+            state = 2;
+            return confirm('您所在的地区无法支付本站的流量费，暂不支持加载更多的数据！', ["肏蛋"]);
+        }
+        return run(res);
+    }
+    var resume = async function () {
+        var a;
+        state = 1;
+        while (a = await payment(res)) {
+            loaded++;
+            if (state !== 1) break;
+        }
+        if (state === 1) state = 0;
+    };
+    var start = function () {
+        if (state) return;
+        var map = parseKV(config.map.split(/\s*[&,\r\n]+\s*/).join('&'));
+        loaded = 0;
+        run = parseUrlList(config.url, config.path, map);
+        res = [];
+        resume();
+    };
+
+</script>

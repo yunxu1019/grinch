@@ -17,6 +17,10 @@
       name: 静态分析
       data:
         searchtip: 输入完整的网址
+    - path: /grap/anchor
+      name: 批量抓取
+      data:
+        searchtip: 输入完整的网址
 - name: 设置
   icon: fa fa-setting
   roles:
