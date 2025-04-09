@@ -15,8 +15,9 @@ var article = `吃饭这种事，讲究的人说用餐，直爽的人说吃饭�
 预知四阶极点及其后事如何，你不妨自己试试，此处不再分解。`
     .trim().replace(/[，]/g, "_").replace(/[。]/g, "\r\n").split(/[\r\n]+/);
 function main(e) {
-    var elem = document.createElement(article[e.$scope.$index]);
-    render(elem, e.$scope, e.$parentScopes);
+    var es = $scoped.get(e);
+    var elem = document.createElement(article[es.$index]);
+    render(elem, es, $parented.get(e));
     care(elem, function (a) {
         elem.innerHTML = template;
         render(elem, {

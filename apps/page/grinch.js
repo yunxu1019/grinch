@@ -18,7 +18,7 @@ function main(argitem) {
     var passport = encode62.timeencode(encode62.decode62(user._passport, user.session));
     var page = document.createElement("垂死病中惊坐起_暗风吹雨入寒窗");
     page.innerHTML = grinch;
-    var scope = render(page, {
+    var scope = {
         items: [],
         user,
         filterTime,
@@ -57,9 +57,10 @@ function main(argitem) {
             });
         },
         padding(elem) {
-            var e = document.createElement(article[elem.$scope.$index % article.length]);
+            var es = $scoped.get(elem);
+            var e = document.createElement(article[es.$index % article.length]);
             appendChild(e, [].slice.call(elem.children));
-            render(e, elem.$scope, elem.$parentScopes, false);
+            render(e, es, $parented.get(elem), false);
             return e;
         },
         async edit(item) {
@@ -121,7 +122,8 @@ function main(argitem) {
                 scope.load();
             });
         },
-    }).$scope;
+    };
+    render(page, scope);
     scope.load();
     onremove(page, function () {
         currentScope = null;

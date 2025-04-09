@@ -188,7 +188,11 @@ var toGroups = function (dom, all) {
 var menus = [{ name: "图片", tag: 'img', attr: 'src' }, { name: "链接", tag: "a", attr: 'href' }];
 async function load() {
     if (!this.valid) return;
-    var href = this.location.href;
+    var { location } = this;
+    if (!/\.\S|\:/.test(location.host) && !location.auth && !location.protocol && !location.path && !location.hash) {
+        return bike(location.host);
+    }
+    var href = location.href;
     if (this.loading) this.loading.abort();
     this.loading = cross('get', this.location.href)
     try {
@@ -233,11 +237,11 @@ function main(params) {
     page.innerHTML = template;
     data.bindInstance(page, {
         "search-text"(value) {
-            page.$scope.location = parseURL(value);
-            page.$scope.valid = !!parseURL(value).hostname;
+            scope.location = parseURL(value);
+            scope.valid = !!parseURL(value).hostname;
         }
     });
-    renderWithDefaults(page, {
+    var scope = {
         valid: false,
         menu,
         searchtip: params.searchtip || "",
@@ -266,26 +270,26 @@ function main(params) {
         _activeMenu: null,
         location: { href: "" },
         load
-    });
+    };
+    renderWithDefaults(page, scope);
     bind('keydown.enter')(page, function () {
-        if (page.$scope.valid && document.activeElement === document.body.querySelector(".searchbox")) {
+        if (scope.valid && document.activeElement === document.body.querySelector(".searchbox")) {
             page.firstElementChild.querySelector("a").click();
         }
     });
     onmounted(page, function () {
-        page.$scope.load();
+        scope.load();
     });
     page.onback = function () {
         if (locations_history.length) {
-            var $scope = this.$scope;
-            var menus = $scope.menus = locations_history.pop();
+            var menus = scope.menus = locations_history.pop();
             menus.forEach(m => {
                 var mm = m.m;
                 delete m.m;
                 Object.assign(mm, m);
                 return mm;
             });
-            $scope.activeMenu = menus.filter(m => m.actived)[0];
+            scope.activeMenu = menus.filter(m => m.actived)[0];
             return false;
         }
     };

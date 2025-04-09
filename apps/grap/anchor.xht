@@ -86,7 +86,7 @@
     <div foot>
         <div>
             <span -if="res" style="float: left;">已加载<span -bind="res.length"></span>个 (<span
-                    -bind="run.value.join('/')"></span>)</span>
+                    -bind="run.value.join('-')"></span>)</span>
             <template -if="state!==1&&res?.length">
                 <a @click="clean()">清理</a>
                 <button type="candidate" @click="save()">保存</button>
@@ -148,7 +148,7 @@
     };
     var loaded = 0;
     var payment = function (res) {
-        if (res.length >= 200 || loaded >= 20) {
+        if (false && (res.length >= 200 || loaded >= 20)) {
             state = 2;
             return confirm('您所在的地区无法支付本站的流量费，暂不支持加载更多的数据！', ["肏蛋"]);
         }

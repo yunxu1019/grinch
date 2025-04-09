@@ -38,7 +38,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
     }
     page.renders = [function () {
         var fields = this.querySelectorAll("field");
-        var valid = page.$scope.valid;
+        var valid = scope.valid;
         for (var cx = 0, dx = fields.length; cx < dx; cx++) {
             var field = fields[cx];
             var m = field.querySelector("model");
@@ -48,8 +48,8 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             }
         }
         if (cx === dx) valid = true;
-        if (valid !== page.$scope.valid) {
-            page.$scope.valid = valid;
+        if (valid !== scope.valid) {
+            scope.valid = valid;
             render.refresh();
         }
         if (this.scrollbar) this.scrollbar.reshape();
@@ -58,7 +58,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
     resize.on(page);
     drag.on(page.children[0], page);
     drag.on(page.children[1], page);
-    render(page, {
+    var scope = {
         field,
         btn: button,
         go,
@@ -139,7 +139,7 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
         editField(f) {
             if (!editField) return;
             var newField = extend({}, f);
-            var $scope = page.$scope;
+            var $scope = this;
             action({
                 modal: {
                     path: '/page/edit',
@@ -238,14 +238,10 @@ function main({ fields_ref, fields, item, params, actionId, title }) {
             remove(page);
         },
         data: extend({ date: +new Date }, item)
-    });
-    page.onback = function () {
-        if (this.$scope.isedit) return false;
     };
-    Promise.resolve(page.$scope.fields.loading_promise).then(function () {
-        setTimeout(function () {
-            move.setPosition(page, [.5, .5]);
-        }, 20);
-    });
+    render(page, scope);
+    page.onback = function () {
+        if (scope.isedit) return false;
+    };
     return page;
 }

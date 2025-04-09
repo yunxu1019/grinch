@@ -6,16 +6,17 @@ function main(params) {
         lattice,
         items: song,
         async play(item) {
+            var scope = this;
             if (item.children) {
                 var hidden = document.createElement("hidden");
                 appendChild(page, hidden);
                 rootElements.push(hidden);
-                var items = page.$scope.items;
+                var items = scope.items;
                 once('remove')(hidden, function () {
-                    page.$scope.items = items;
+                    scope.items = items;
                     render.refresh();
                 });
-                page.$scope.items = item.children instanceof Array
+                scope.items = item.children instanceof Array
                     ? item.children
                     : data.asyncInstance(item.children, null, kugou$parseSongsList);
             } else {

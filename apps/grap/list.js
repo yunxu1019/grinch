@@ -20,7 +20,7 @@ function stringifyRequests(reqlist) {
 function main(params) {
     var page = div();
     page.innerHTML = template;
-    renderWithDefaults(page, {
+    var scope = {
         button,
         requests: [],
         address: 'config/api.yml',
@@ -67,7 +67,8 @@ function main(params) {
                 console.log(res);
             })
         }
-    });
-    page.$scope.load();
+    };
+    renderWithDefaults(page, scope);
+    scope.load();
     return page;
 }

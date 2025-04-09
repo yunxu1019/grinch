@@ -1,7 +1,7 @@
 function main(item) {
     var page = div();
     page.innerHTML = database;
-    render(page, {
+    var scope = {
         table,
         item,
         model,
@@ -70,7 +70,8 @@ function main(item) {
         //     return d.map(name => data.from("db-info", { name }));
         // })
 
-    });
+    };
+    render(page, scope);
     on("append")(page, function () {
 
         data.setInstance("option-buttons", [
@@ -79,7 +80,7 @@ function main(item) {
                 icon: 'fa fa-plus',
                 modal: {
                     path: '/page/edit',
-                    fields: page.$scope.fields
+                    fields: scope.fields
                 }
             }
         ]);

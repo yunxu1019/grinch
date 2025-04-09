@@ -2,9 +2,9 @@ var route = frame$route;
 var page = document.createElement("孤灯提单刀_漂泊我自傲_随心江湖江_问天何时尽");
 page.innerHTML = top;
 bind("zimoli")(page, function ({ zimoli }) {
-    page.$scope.searchtip.placeholder = zimoli.data.searchtip || '';
+    scope.searchtip.placeholder = zimoli.data.searchtip || '';
 });
-renderWithDefaults(page, {
+var scope = {
     btn: button,
     user,
     data,
@@ -41,7 +41,8 @@ renderWithDefaults(page, {
     switchMenu() {
         page.parentNode.switchLeft();
     }
-});
+};
+renderWithDefaults(page, scope);
 
 function main() {
     return page;
